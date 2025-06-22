@@ -122,7 +122,7 @@ _rumblingActivate = List();
 _rumblingDeactivate = List();
 _spawnerComponentList = List();
 _repairableObjectList = List();
-
+_musicObjectList = List();
 _zonesActivated = List();
 
 # Day Titan Settings
@@ -453,6 +453,7 @@ Game.Print("You were stripped of your rank");
 elif (message == "UpdateLegend")
 {
 self.SetLegend();
+if (UI.IsPopupActive("Formation")) { self.SetFormationContent(); }
 }
 # Functions messages
 elif (message == "ErenUnshift" && Network.IsMasterClient && sender.Character != null && sender.Character.Type == "Shifter")
@@ -728,16 +729,24 @@ UI.HidePopup("GameGuide");
 elif(buttonName == "SelfOutline")
 {
 RoomData.SetProperty(PropertyEnum.SelfOutline, !RoomData.GetProperty(PropertyEnum.SelfOutline, true));
+self.SetSettingsContent();
 }
 elif(buttonName == "KeyGuide")
 {
 RoomData.SetProperty(PropertyEnum.KeyGuide, !RoomData.GetProperty(PropertyEnum.KeyGuide, true));
 self.SetLegend();
+self.SetSettingsContent();
 }
 elif(buttonName == "FlareGuide")
 {
 RoomData.SetProperty(PropertyEnum.FlareGuide, !RoomData.GetProperty(PropertyEnum.FlareGuide, false));
 self.SetLegend();
+self.SetSettingsContent();
+}
+elif(buttonName == "MusicToggle")
+{
+RoomData.SetProperty(PropertyEnum.MusicToggle, !RoomData.GetProperty(PropertyEnum.MusicToggle, true));
+self.SetSettingsContent();
 }
 
 if (buttonName == "ChooseLeft")
@@ -940,6 +949,13 @@ for (id in String.Split(rumblingDeactivateIds, " "))
 {
 object = Map.FindMapObjectByID(Convert.ToInt(id));
 if (object != null) { self._rumblingDeactivate.Add (object); }
+}
+
+musicActivateIds = "8401 8402 8403 8404 9377 14025 14026 14027";
+for (id in String.Split(musicActivateIds, " "))
+{
+object = Map.FindMapObjectByID(Convert.ToInt(id));
+if (object != null) { self._musicObjectList.Add(object); }
 }
 }
 
@@ -1255,9 +1271,7 @@ UI.AddPopupBottomButton("GameGuide", "FormationButton", "Formation");
 
 # Settings
 UI.CreatePopup("Settings", "Settings", 500, 500);
-UI.AddPopupButton("Settings", "FlareGuide", "Toggle Flare Guide");
-UI.AddPopupButton("Settings", "KeyGuide", "Toggle Key Guide");
-UI.AddPopupButton("Settings", "SelfOutline", "Toggle Self Outline");
+self.SetSettingsContent();
 
 # Formation
 UI.CreatePopup("Formation", "Formation", 1000, 1000);
@@ -1277,7 +1291,8 @@ function SetFormationContent()
 {
 UI.ClearPopup("Formation");
 
-commander = null;
+leftComm = null;
+rightComm = null;
 leftCommOff = null;
 rightCommOff = null;
 eren = null;
@@ -1299,6 +1314,10 @@ rightWingCount = 0;
 
 leftMedicCount = 0;
 rightMedicCount = 0;
+
+leftEngineerCount = 0;
+rightEngineerCount = 0;
+
 cadetCount = 0;
 privateCount = 0;
 
@@ -1315,9 +1334,7 @@ for (player in Network.Players)
 rank = player.GetCustomProperty(NamesEnum.Rank);
 squad = player.GetCustomProperty(NamesEnum.Squad);
 formation = player.GetCustomProperty(NamesEnum.Formation);
-
-if (rank == RanksEnum.Commander) { commander = player; }
-elif (formation == FormationsEnum.Left)
+if (formation == FormationsEnum.Left)
 {
 leftWingCount += 1;
 if (squad == SquadsEnum.Recon) { 
@@ -1337,10 +1354,12 @@ if (rank == RanksEnum.SectionCommander) { leftRearComm = player; }
 }
 
 if (rank == RanksEnum.Medic) { leftMedicCount += 1; }
+elif (rank == RanksEnum.Engineer) { leftEngineerCount += 1; }
 elif (rank == RanksEnum.Cadet) { cadetCount += 1; }
 elif (rank == RanksEnum.Private) { privateCount += 1; }
 elif (rank == RanksEnum.Eren) { eren = player; }
 elif (rank == RanksEnum.CommunicationOfficer) { leftCommOff = player; }
+elif (rank == RanksEnum.Commander) { leftComm = player; }
 }
 elif (formation == FormationsEnum.Right)
 {
@@ -1362,21 +1381,33 @@ if (rank == RanksEnum.SectionCommander) { rightRearComm = player; }
 }
 
 if (rank == RanksEnum.Medic) { rightMedicCount += 1; }
+elif (rank == RanksEnum.Engineer) { rightEngineerCount += 1; }
 elif (rank == RanksEnum.Cadet) { cadetCount += 1; }
 elif (rank == RanksEnum.Private) { privateCount += 1; }
 elif (rank == RanksEnum.Eren) { eren = player; }
 elif (rank == RanksEnum.CommunicationOfficer) { rightCommOff = player; }
+elif (rank == RanksEnum.Commander) { rightComm = player; }
 }
 }
 
-# Commander
-label = self.GetStringColorWrapped("Commander: ", RanksEnum.Commander);
-if (commander != null) { label += commander.Name; }
-label += String.Newline + String.Newline;
+label = "";
 
 # Eren
 label += self.GetStringColorWrapped("Eren: ", RanksEnum.Eren);
 if (eren != null) { label += eren.Name; }
+label += String.Newline + String.Newline;
+
+# Wing Commanders
+label += self.GetStringColorWrapped("Left Comm.: ", RanksEnum.Commander);
+if (leftComm != null) { label += leftComm.Name; }
+label += "    ";
+label += self.GetStringColorWrapped("Right Comm.: ", RanksEnum.Commander);
+if (rightComm != null) { label += rightComm.Name; }
+label += String.Newline + String.Newline;
+
+# Wing Counts
+label += self.GetStringColorWrapped("Left Wing: ", FormationsEnum.Left) + Convert.ToString(leftWingCount);
+label += "    " + self.GetStringColorWrapped("Right Wing: ", FormationsEnum.Right) + Convert.ToString(rightWingCount);
 label += String.Newline + String.Newline;
 
 # Communication Officers
@@ -1388,10 +1419,10 @@ if (rightCommOff != null) { label += rightCommOff.Name; }
 label += String.Newline + String.Newline;
 
 # Recon Squad Commanders
-label += self.GetStringColorWrapped("Left Commander: ", SquadsEnum.Recon);
+label += self.GetStringColorWrapped("Left Sect. Commander: ", SquadsEnum.Recon);
 if (leftReconComm != null) { label += leftReconComm.Name; }
 label += "    ";
-label += self.GetStringColorWrapped("Right Commander: ", SquadsEnum.Recon);
+label += self.GetStringColorWrapped("Right Sect. Commander: ", SquadsEnum.Recon);
 if (rightReconComm != null) { label += rightReconComm.Name; }
 label += String.Newline + String.Newline;
 
@@ -1404,10 +1435,10 @@ label += Convert.ToString(rightReconSquadCount);
 label += String.Newline + String.Newline;
 
 # Supply Guard Squad Commanders
-label += self.GetStringColorWrapped("Left Commander: ", SquadsEnum.SupplyGuard);
+label += self.GetStringColorWrapped("Left Sect. Commander: ", SquadsEnum.SupplyGuard);
 if (leftSupplyComm != null) { label += leftSupplyComm.Name; }
 label += "    ";
-label += self.GetStringColorWrapped("Right Commander: ", SquadsEnum.SupplyGuard);
+label += self.GetStringColorWrapped("Right Sect. Commander: ", SquadsEnum.SupplyGuard);
 if (rightSupplyComm != null) { label += rightSupplyComm.Name; }
 label += String.Newline + String.Newline;
 
@@ -1420,10 +1451,10 @@ label += Convert.ToString(rightSupplySquadCount);
 label += String.Newline + String.Newline;
 
 # Rear Guard Squad Commanders
-label += self.GetStringColorWrapped("Left Commander: ", SquadsEnum.RearGuard);
+label += self.GetStringColorWrapped("Left Sect. Commander: ", SquadsEnum.RearGuard);
 if (leftRearComm != null) { label += leftRearComm.Name; }
 label += "    ";
-label += self.GetStringColorWrapped("Right Commander: ", SquadsEnum.RearGuard);
+label += self.GetStringColorWrapped("Right Sect. Commander: ", SquadsEnum.RearGuard);
 if (rightRearComm != null) { label += rightRearComm.Name; }
 label += String.Newline + String.Newline;
 
@@ -1436,24 +1467,36 @@ label += Convert.ToString(rightRearSquadCount);
 label += String.Newline + String.Newline;
 
 # Medic
-label += self.GetStringColorWrapped("Left Wing Medic Count: ", RanksEnum.Medic);
+label += self.GetStringColorWrapped("Left Medic Count: ", RanksEnum.Medic);
 label += Convert.ToString(leftMedicCount);
 label += "    ";
-label += self.GetStringColorWrapped("Right Wing Medic Count: ", RanksEnum.Medic);
+label += self.GetStringColorWrapped("Right Medic Count: ", RanksEnum.Medic);
 label += Convert.ToString(rightMedicCount);
 label += String.Newline + String.Newline;
 
-# Cadets
-label += self.GetStringColorWrapped("Cadet Count: ", RanksEnum.Cadet);
-label += Convert.ToString(cadetCount);
+# Engineer
+label += self.GetStringColorWrapped("Left Engineer Count: ", RanksEnum.Engineer);
+label += Convert.ToString(leftMedicCount);
+label += "    ";
+label += self.GetStringColorWrapped("Right Engineer Count: ", RanksEnum.Engineer);
+label += Convert.ToString(rightMedicCount);
 label += String.Newline + String.Newline;
 
-# Privates
-label += self.GetStringColorWrapped("Private Count: ", RanksEnum.Private);
-label += Convert.ToString(privateCount);
+# Cadets and Privates
+label += self.GetStringColorWrapped("Privates: ", RanksEnum.Private) + Convert.ToString(privateCount);
+label += "    " + self.GetStringColorWrapped("Cadets: ", RanksEnum.Cadet) +Convert.ToString(cadetCount);
 label += String.Newline + String.Newline;
 
 UI.AddPopupLabel("Formation", label);
+}
+
+function SetSettingsContent()
+{
+UI.ClearPopup("Settings");
+UI.AddPopupButton("Settings", "FlareGuide", "Toggle Flare Guide " + self.GetToggleStateString(RoomData.GetProperty(PropertyEnum.FlareGuide, false)));
+UI.AddPopupButton("Settings", "KeyGuide", "Toggle Key Guide " + self.GetToggleStateString(RoomData.GetProperty(PropertyEnum.KeyGuide, true)));
+UI.AddPopupButton("Settings", "SelfOutline", "Toggle Self Outline " + self.GetToggleStateString(RoomData.GetProperty(PropertyEnum.SelfOutline, true)));
+UI.AddPopupButton("Settings", "MusicToggle", "Toggle Music " + self.GetToggleStateString(RoomData.GetProperty(PropertyEnum.MusicToggle, true)));
 }
 
 function SetGameGuideContent()
@@ -1681,6 +1724,12 @@ UI.SetLabelForTime("MiddleCenter", label, 20.0);
 }
 
 # Other Functions
+function GetToggleStateString(state)
+{
+if (state) { return UI.WrapStyleTag("[ON]", "color", "green"); }
+else { return UI.WrapStyleTag("[OFF]", "color", "red"); }
+}
+
 function SetRankWeapon(character)
 {
 if (character == null || character.Type != "Human") { return; }
@@ -2062,6 +2111,14 @@ self._timeCounter = self.DayDuration;
 self.TitanChangeTime();
 }
 }
+
+if (!RoomData.GetProperty(PropertyEnum.MusicToggle, true))
+{
+for (object in self._musicObjectList) 
+{ 
+object.Active = false; 
+}
+}
 }
 
 function CheckSkillBan()
@@ -2168,6 +2225,7 @@ extension PropertyEnum
 SelfOutline = "SelfOutline";
 KeyGuide = "KeyGuide";
 FlareGuide = "FlareGuide";
+MusicToggle = "MusicToggle";
 }
 
 extension SettingNames
