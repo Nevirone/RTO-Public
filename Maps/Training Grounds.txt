@@ -1276,476 +1276,6 @@ Scene,Interact/Cannon3,1581,0,1,0,1,1,Cannon3,4.404672,42.40928,-158.0075,0,0,0,
 Scene,Decor/Scaffold4,1582,0,1,1,1,0,Scaffold4,165.7152,36.43981,23.53958,0,0,0,1,0.4,2,Physical,Entities,Default,Default|255/255/255/255,;
 Scene,Interact/Cannon3,1583,0,1,0,1,1,Cannon3,164.097,42.40928,23.34687,0,0,0,1.5,1.5,1.5,Physical,Entities,Default,Default|255/255/255/255,Cannon|UnlimitedAmmo:true|MaxAmmo:10|Cooldown:3|ProjectileLiveTime:5|LimitVerticalRotation:true|VerticalRotation:45|LimitHorizontalRotation:false|HorizontalRotation:75
 /// Logic
-component HorseMount
-{
-MoveForce = 20.0;
-JumpForce = 5.0;
-MaxMoveSpeed = 50.0;
-RotateSpeed = 3.0;
-MaxCallTime = 120.0;
-FollowDistance = 30.0;
-InteractionRange = 3.0;
-
-# Synced Stream
-_inUse = false;
-_isCalled = false;
-# Synced Messages
-_ownerId = -1;
-_hasPassenger = false;
-
-_owner = null;
-_horse = null;
-_rigidbody = null;
-_healthComponent = null;
-
-_human = null;
-_collidingRide = null;
-_collidingPassenger = null;
-_isFollowing = false;
-_isPassenger = false;
-_callTimeRemaining = 0;
-_jumpCooldown = 0;
-
-_isRequestingMount = false;
-_isRequestingCall = false;
-
-_HorseProperty = "HorseProperty";
-
-function Init()
-{
-self.MapObject.AddSphereCollider("Region", "Characters", Vector3.Zero, self.InteractionRange);
-self._horse = self.MapObject.Transform;
-self._rigidbody = self.MapObject.GetComponent("Rigidbody");
-self._healthComponent = self.MapObject.GetComponent("DestroyableObject");
-}
-
-function OnPlayerSpawn(player, character)
-{
-if (Network.IsMasterClient) 
-{ 
-self.NetworkView.SendMessage(player, "o" + Convert.ToString(self._ownerId)); 
-self.NetworkView.SendMessage(player, "p" + Convert.ToString(self._hasPassenger)); 
-}
-}
-
-function OnPlayerLeave(player)
-{
-if (player.ID == self._ownerId)
-{
-self._ownerId = -1;
-self._owner = null;
-}
-
-if (player.ID == Network.MyPlayer.ID)
-{
-if (self._isPassenger)
-{
-self.SetHasPassenger(false);
-self._isPassenger = false;
-}
-elif(self.NetworkView.Owner == Network.MyPlayer || Network.IsMasterClient)
-{
-self._inUse = false;
-self.NetworkView.Transfer(Network.MasterClient);
-}
-}
-}
-
-function OnCharacterDie(victim, killer, killerName)
-{
-if (victim.Type != "Human") { return; }
-if (victim.Player.ID == self._ownerId)
-{
-self._ownerId = -1;
-self._owner = null;
-}
-
-if (victim.Player.ID == Network.MyPlayer.ID)
-{
-if (self._isPassenger)
-{
-self.SetHasPassenger(false);
-self._isPassenger = false;
-}
-elif(self.NetworkView.Owner == Network.MyPlayer || Network.IsMasterClient)
-{
-self._inUse = false;
-self.NetworkView.Transfer(Network.MasterClient);
-}
-}
-}
-
-function SendNetworkStream()
-{
-self.NetworkView.SendStream(self._inUse);
-self.NetworkView.SendStream(self._isCalled);
-}
-
-function OnNetworkStream()
-{
-self._inUse = self.NetworkView.ReceiveStream();
-self._isCalled = self.NetworkView.ReceiveStream();
-}
-
-function OnNetworkMessage(sender, message)
-{
-if (String.StartsWith(message, "o"))
-{
-self._ownerId = Convert.ToInt(String.Substring(message, 1));
-if (self._ownerId == -1) { self._owner = null; }
-else
-{
-for (player in Network.Players)
-{
-if (player.ID == self._ownerId) { self._owner = player; break; }
-}  
-}
-}
-elif (String.StartsWith(message, "p"))
-{
-self._hasPassenger = Convert.ToBool(String.Substring(message, 1));
-}
-elif (message == "request" && self.NetworkView.Owner == Network.MyPlayer && !self._isCalled)
-{
-if (self._inUse && self._human != null && self._ownerId == sender.ID)
-{
-self.DismountHorse(false);
-UI.SetLabelForTime("MiddleCenter", "*You hear someone whistle for your mount..", 1.5);
-}
-self.NetworkView.Transfer(sender);
-}
-}
-
-function OnNetworkTransfer(oldOwner, newOwner) 
-{
-if (self._isRequestingMount) 
-{
-self._isRequestingMount = false;
-self.MountHorse(self._collidingRide);
-}
-elif (self._isRequestingCall) 
-{
-self._isRequestingCall = false;
-self.Whistle();
-}
-elif (newOwner == Network.MasterClient && Network.IsMasterClient)
-{
-self._inUse = false;
-self._isCalled = false;
-}
-}
-
-function OnCollisionStay(other)
-{
-if (other.Type == "Human" && other.IsMainCharacter && !other.IsMounted) 
-{
-project = Vector3.Project(other.Position - self.MapObject.Position, self.MapObject.Forward);
-isCollidingRide = project.Normalized == self.MapObject.Forward;
-text = "";
-if (self._isCalled) { text += "Horse is following it's owner"; }
-elif (!self._inUse && isCollidingRide) { text += "Press " + Input.GetKeyName("Interaction/Interact") + " to ride"; }
-elif (!self._hasPassenger && !isCollidingRide) {text += "Press " + Input.GetKeyName("Interaction/Interact") + " to ride as passenger"; }
-else { return; }
-
-if (self._healthComponent != null) { text += " (" + Convert.ToString(self._healthComponent.GetHealth()) + "HP)"; }
-
-if (self._ownerId != -1 && self._owner != null) 
-{
-text += " (Owner: " + UI.WrapStyleTag("[" + self._ownerId + "]", "color", "orange") + self._owner.Name + ")";
-text += String.Newline;
-
-if (!self._inUse && self._ownerId == Network.MyPlayer.ID && !self._isCalled)
-{
-text += "Follow [" + Input.GetKeyName("Interaction/Interact2") + "]  Unclaim [" + Input.GetKeyName("Interaction/Interact3") + "]";
-}
-}
-
-UI.SetLabelForTime("MiddleCenter", text, 0.1);
-if (isCollidingRide) { self._collidingRide = other; }
-else { self._collidingPassenger = other; }
-if (RoomData.GetProperty(self._HorseProperty, null) == null) { RoomData.SetProperty(self._HorseProperty, self.MapObject.ID); }
-}
-}
-
-function OnTick()
-{
-myCharacter = Network.MyPlayer.Character;
-
-self._collidingRide = null;
-self._collidingPassenger = null;
-if (RoomData.GetProperty(self._HorseProperty, null) != null && RoomData.GetProperty(self._HorseProperty, null) == self.MapObject.ID) 
-{ RoomData.SetProperty(self._HorseProperty, null); }
-
-if (self._callTimeRemaining > 0) { self._callTimeRemaining -= Time.TickTime; }
-if (self._jumpCooldown > 0) { self._jumpCooldown -= Time.TickTime; }
-
-if (myCharacter != null && myCharacter.Type == "Human" && myCharacter.IsMounted && myCharacter.MountedTransform == self._horse 
-&& (self._human == null || !self.MapObject.Active))
-{
-myCharacter.Unmount(); # Prevent stuck players
-}
-
-if (self.NetworkView.Owner != Network.MyPlayer) { return; }
-
-if (self._inUse && !self._isPassenger && self._human != null)
-{
-if (self._human.HasTargetDirection)
-{
-self.MapObject.Forward = Vector3.Lerp(self.MapObject.Forward, self._human.TargetDirection, self.RotateSpeed * Time.FrameTime);
-self._rigidbody.AddForce(self.MapObject.Forward * self.MoveForce);
-}
-else
-{
-self.SlowToStop();
-}
-self.LimitSpeed();
-}
-elif (myCharacter != null && myCharacter.Type == "Human" && self._isCalled)
-{
-myPosition = myCharacter.Position;
-myPosition.Y = self.MapObject.Position.Y; # Ignore height in distance check
-distanceToOwner = Vector3.Distance(self.MapObject.Position, myPosition);
-
-if (self._isFollowing && distanceToOwner < self.FollowDistance) 
-{
-velocity = self._rigidbody.GetVelocity();
-velocityY = velocity.Y;
-velocity *= 0.2;
-velocity.Y = velocityY;
-
-self._rigidbody.SetVelocity(velocity);
-return; 
-}
-
-if (!self._isFollowing && (self._callTimeRemaining <= 0 || distanceToOwner < 10)) 
-{
-if (self._callTimeRemaining <= 0)
-{
-self.SetOwnerId(-1);
-UI.SetLabelForTime("MiddleCenter", "*Your horse couldn't reach you and got lost..", 1.5);
-}
-else
-{
-UI.SetLabelForTime("MiddleCenter", "*Your horse came to you..", 1.5);
-}
-
-velocity = self._rigidbody.GetVelocity();
-
-self._rigidbody.SetVelocity(velocity * 0.2);
-self._isCalled = false;
-self.MapObject.GetTransform("CrazySound").PlaySound();
-
-self.NetworkView.Transfer(Network.MasterClient);
-return;
-}
-
-directionToPlayer = (myCharacter.Position - self.MapObject.Position).Normalized;
-directionToPlayer.Y = 0;
-
-self.MapObject.Forward = directionToPlayer;
-self._rigidbody.AddForce(directionToPlayer * self.MoveForce * 1.5);
-self.LimitSpeed();
-}
-
-if (!self._inUse && !self._isCalled && self.NetworkView.Owner == Network.MyPlayer) { self.SlowToStop(); }
-
-if (self._human != null && (!self._human.IsMounted || self._human.MountedTransform != self._horse))
-{
-self._human = null;
-if (self._isPassenger)
-{
-self.SetHasPassenger(false);
-self._isPassenger = false;
-}
-else
-{
-self._inUse = false;
-self.NetworkView.Transfer(Network.MasterClient);
-}
-}
-}
-
-function OnFrame()
-{
-if (self._human != null) { self.AnimateRider(); }
-self.AnimateHorse();
-
-if (self._inUse && !self._isPassenger && self._human != null && self.NetworkView.Owner == Network.MyPlayer) 
-{
-if (Input.GetKeyDown("Human/HorseJump") && self._jumpCooldown <= 0 && Physics.LineCast(self.MapObject.Position, self.MapObject.Position - Vector3.Up * 5.0, "MapObjects") != null)
-{
-self._jumpCooldown = 1;
-self._rigidbody.AddForce(self.MapObject.Up * self.JumpForce);
-}
-elif ((Input.GetKeyDown("Interaction/Interact") || Input.GetKeyDown("Human/Jump") 
-|| Input.GetKeyDown("Human/HookLeft") || Input.GetKeyDown("Human/HookRight"))) 
-{
-self.DismountHorse(true);
-}
-}
-elif (self._hasPassenger && self._isPassenger && self._human != null && Input.GetKeyDown("Interaction/Interact"))
-{
-self.SetHasPassenger(false);
-self._human.Unmount();
-self._human = null;
-self._isPassenger = false;
-}
-elif (!self._inUse && !self._isCalled && self._collidingRide != null && !self._collidingRide.IsMounted && Input.GetKeyDown("Interaction/Interact"))
-{
-if (self.NetworkView.Owner == Network.MyPlayer)
-{
-self.MountHorse(self._collidingRide);
-}
-else
-{
-self._isRequestingMount = true;
-self.NetworkView.SendMessage(self.NetworkView.Owner, "request");
-}
-}
-elif (!self._hasPassenger && !self._isCalled && self._collidingPassenger != null && !self._collidingPassenger.IsMounted && Input.GetKeyDown("Interaction/Interact"))
-{
-self.SetHasPassenger(true);
-self._human = self._collidingPassenger;
-self._human.MountTransform(self._horse, Vector3(0, 1.95, -0.4), Vector3.Zero);
-self._human.ClearHooks();
-self._isPassenger = true;
-}
-elif ((!self._isCalled || self._isFollowing) && self._human == null && self._ownerId == Network.MyPlayer.ID 
-&& (RoomData.GetProperty(self._HorseProperty, null) == null || RoomData.GetProperty(self._HorseProperty, null) == self.MapObject.ID) 
-&& Input.GetKeyDown("Interaction/Interact2"))
-{
-if (self.NetworkView.Owner == Network.MyPlayer)
-{
-self.Whistle();
-}
-else
-{
-self._isRequestingCall = true;
-self.NetworkView.SendMessage(self.NetworkView.Owner, "request");
-}
-}
-elif (!self._inUse && !self._isCalled && self._collidingRide != null 
-&& self._ownerId == Network.MyPlayer.ID && Input.GetKeyDown("Interaction/Interact3"))
-{
-self.SetOwnerId(-1);
-self.MapObject.GetTransform("Idle3Sound").PlaySound();
-}
-}
-
-function DismountHorse(transfer) {
-self.MapObject.GetTransform("Idle2Sound").PlaySound();
-
-dismountVelocity = self._rigidbody.GetVelocity();
-dismountVelocity.Y += 12.0;
-
-self._human.Unmount();
-self._human.Velocity = dismountVelocity;
-self._human = null;
-self._inUse = false;
-if (transfer)
-{
-self.NetworkView.Transfer(Network.MasterClient);
-}
-}
-
-function MountHorse(human)
-{
-if (human == null || human.IsMounted) {
-self.NetworkView.Transfer(Network.MasterClient);
-return;
-}
-
-self.MapObject.GetTransform("Idle2Sound").PlaySound();
-
-self._human = human;
-self._inUse = true;
-self._isCalled = false;
-
-human.MountTransform(self._horse, Vector3(0, 1.95, 0.1), Vector3.Zero);
-human.ClearHooks();
-
-if (self._ownerId == -1)
-{
-self.SetOwnerId(self._human.Player.ID);
-}
-}
-
-function Whistle()
-{
-self._callTimeRemaining = self.MaxCallTime;
-self._isCalled = true;
-self._inUse = false;
-
-Network.MyPlayer.Character.Emote("Eat");
-
-if (!self._isFollowing && self._collidingRide != null)
-{
-self._isFollowing = true;
-UI.SetLabelForTime("MiddleCenter", "*Whistle!*" + String.Newline + "*You order your horse to follow..", 1.5);
-}
-else
-{
-self._isFollowing = false;
-UI.SetLabelForTime("MiddleCenter", "*Whistle!*" + String.Newline + "*You call for your horse..", 1.5);
-}
-
-self.MapObject.GetTransform("CrazySound").PlaySound();
-}
-
-function AnimateRider() {
-if (self._isPassenger) { self._human.PlayAnimation("Armature|horse_idle"); }
-elif (self._rigidbody.GetVelocity().Magnitude > 1) { self._human.PlayAnimation("Armature|horse_run");}
-else { self._human.PlayAnimation("Armature|horse_idle"); }
-}
-
-function AnimateHorse()
-{
-if (self._rigidbody.GetVelocity().Magnitude > 1) { self._horse.PlayAnimation("horse_Run"); }
-else { self._horse.PlayAnimation("horse_idle0"); }
-}
-
-function SlowToStop()
-{
-velocity = self._rigidbody.GetVelocity();
-velocityY = velocity.Y;
-velocity.Y = 0;
-
-if (velocity.Magnitude < 1) { self._rigidbody.SetVelocity(Vector3.Up * velocityY); }
-else { self._rigidbody.AddForce(-0.5 * velocity + velocityY * Vector3.Up); }
-}
-
-function LimitSpeed()
-{
-velocity = self._rigidbody.GetVelocity();
-velocityY = velocity.Y;
-velocity.Y = 0;
-velocity = velocity.Normalized * Math.Min(velocity.Magnitude, self.MaxMoveSpeed);
-velocity.Y = velocityY;
-self._rigidbody.SetVelocity(velocity);
-}
-
-function SetOwnerId(value)
-{
-self._ownerId = value;
-
-if (self._ownerId == -1) { self._owner = null; }
-else
-{
-for (player in Network.Players)
-{
-if (player.ID == self._ownerId) { self._owner = player; break; }
-}  
-}
-self.NetworkView.SendMessageOthers("o" + Convert.ToString(self._ownerId));
-}
-
-function SetHasPassenger(value)
-{
-self._hasPassenger = value;
-self.NetworkView.SendMessageOthers("p" + Convert.ToString(self._hasPassenger));
-}
-}
-
 component Cannon
 {
 UnlimitedAmmo = false;
@@ -2240,10 +1770,11 @@ self._rightWheel.Rotate(Vector3(rightWheelRotation, 0, 0));
 
 if (self._inUseCannon)
 {
-if (self._human != Network.MyPlayer.Character)
+if (self._human != Network.MyPlayer.Character || (self._human != null && self._human.MountedTransform != self._humanMount))
 {
 self._inUseCannon = false;
 self.NetworkView.SendMessage(self.NetworkView.Owner, "c");
+Camera.SetManual(false);
 return;
 }
 if (self._rotationSyncCoolDdown <= 0 && self._hasRotateCannon)
@@ -2528,334 +2059,473 @@ return angle;
 }
 }
 
-component Wagon
+component HorseMount
 {
-MoveForce = 17.0;
+MoveForce = 20.0;
+JumpForce = 5.0;
 MaxMoveSpeed = 50.0;
-RotateSpeed = 2.5;
-JumpForce = 5;
-CanSupply = true;
-InfiniteSupply = false;
-MaxSupplyTimes = 40;
+RotateSpeed = 3.0;
+MaxCallTime = 120.0;
+FollowDistance = 30.0;
+InteractionRange = 3.0;
+
+# Synced Stream
 _inUse = false;
-_riding = false;
+_isCalled = false;
+# Synced Messages
+_ownerId = -1;
+_hasPassenger = false;
+
+_owner = null;
 _horse = null;
-_human = null;
-_collidingHuman = null;
-_collidingDrive = false;
-_collidingRide = false;
-_collidingGas = false;
 _rigidbody = null;
 _healthComponent = null;
-_leftWheel = null;
-_rightWheel = null;
-_leftSitTransform = null;
-_rightSitTransform = null;
-_supplyTimesLeft = 0;
-_jumpCoolDown = 0;
+
+_human = null;
+_collidingRide = null;
+_collidingPassenger = null;
+_isFollowing = false;
+_isPassenger = false;
+_callTimeRemaining = 0;
+_jumpCooldown = 0;
+
+_isRequestingMount = false;
+_isRequestingCall = false;
+
+_HorseProperty = "HorseProperty";
 
 function Init()
 {
-self._horse = self.MapObject.GetTransform("Horse");
-self.MapObject.AddSphereCollider("Region", "Characters", Vector3.Zero, 5.5);
+self.MapObject.AddSphereCollider("Region", "Characters", Vector3.Zero, self.InteractionRange);
+self._horse = self.MapObject.Transform;
 self._rigidbody = self.MapObject.GetComponent("Rigidbody");
 self._healthComponent = self.MapObject.GetComponent("DestroyableObject");
-self._leftWheel = self.MapObject.GetTransform("Carriage/Wheels/LeftWheelPivot");
-self._rightWheel = self.MapObject.GetTransform("Carriage/Wheels/RightWheelPivot");
-self._leftSitTransform = self.MapObject.GetTransform("SitRegionBottomLeft");
-self._rightSitTransform = self.MapObject.GetTransform("SitRegionBottomRight");
-self._supplyTimesLeft = self.MaxSupplyTimes;
-}
-
-function OnNetworkMessage(sender, message)
-{
-if (Network.IsMasterClient && self.NetworkView.Owner == Network.MyPlayer && !self._inUse && message == "request")
-{
-self.NetworkView.Transfer(sender);
-}
-elif (String.StartsWith(message, "s"))
-{
-self._supplyTimesLeft = Convert.ToInt(String.Substring(message, 1));
-}
 }
 
 function OnPlayerSpawn(player, character)
 {
-if (self.NetworkView.Owner == Network.MyPlayer)
-{
-self.NetworkView.SendMessage(player, "s" + Convert.ToString(self._supplyTimesLeft));
+if (Network.IsMasterClient) 
+{ 
+self.NetworkView.SendMessage(player, "o" + Convert.ToString(self._ownerId)); 
+self.NetworkView.SendMessage(player, "p" + Convert.ToString(self._hasPassenger)); 
 }
 }
 
-function UseSupply()
+function OnPlayerLeave(player)
 {
-self._supplyTimesLeft = self._supplyTimesLeft - 1;
-self.NetworkView.SendMessageOthers("s" + Convert.ToString(self._supplyTimesLeft));
+if (player.ID == self._ownerId)
+{
+self._ownerId = -1;
+self._owner = null;
 }
 
-function SetSupplyCount(amount)
+if (player.ID == Network.MyPlayer.ID)
 {
-self._supplyTimesLeft = amount;
-self.NetworkView.SendMessageOthers("s" + Convert.ToString(self._supplyTimesLeft));
+if (self._isPassenger)
+{
+self.SetHasPassenger(false);
+self._isPassenger = false;
+}
+elif(self.NetworkView.Owner == Network.MyPlayer || Network.IsMasterClient)
+{
+self._inUse = false;
+self.NetworkView.Transfer(Network.MasterClient);
+}
+}
+}
+
+function OnCharacterDie(victim, killer, killerName)
+{
+if (victim.Type != "Human") { return; }
+if (victim.Player.ID == self._ownerId)
+{
+self._ownerId = -1;
+self._owner = null;
+}
+
+if (victim.Player.ID == Network.MyPlayer.ID)
+{
+if (self._isPassenger)
+{
+self.SetHasPassenger(false);
+self._isPassenger = false;
+}
+elif(self.NetworkView.Owner == Network.MyPlayer || Network.IsMasterClient)
+{
+self._inUse = false;
+self.NetworkView.Transfer(Network.MasterClient);
+}
+}
+}
+
+function SendNetworkStream()
+{
+self.NetworkView.SendStream(self._inUse);
+self.NetworkView.SendStream(self._isCalled);
+}
+
+function OnNetworkStream()
+{
+self._inUse = self.NetworkView.ReceiveStream();
+self._isCalled = self.NetworkView.ReceiveStream();
+}
+
+function OnNetworkMessage(sender, message)
+{
+if (String.StartsWith(message, "o"))
+{
+self._ownerId = Convert.ToInt(String.Substring(message, 1));
+if (self._ownerId == -1) { self._owner = null; }
+else
+{
+for (player in Network.Players)
+{
+if (player.ID == self._ownerId) { self._owner = player; break; }
+}  
+}
+}
+elif (String.StartsWith(message, "p"))
+{
+self._hasPassenger = Convert.ToBool(String.Substring(message, 1));
+}
+elif (message == "request" && self.NetworkView.Owner == Network.MyPlayer && !self._isCalled)
+{
+if (self._inUse && self._human != null && self._ownerId == sender.ID)
+{
+self.DismountHorse(false);
+UI.SetLabelForTime("MiddleCenter", "*You hear someone whistle for your mount..", 1.5);
+}
+self.NetworkView.Transfer(sender);
+}
 }
 
 function OnNetworkTransfer(oldOwner, newOwner) 
 {
-if (newOwner == Network.MasterClient && Network.IsMasterClient)
+if (self._isRequestingMount) 
+{
+self._isRequestingMount = false;
+self.MountHorse(self._collidingRide);
+}
+elif (self._isRequestingCall) 
+{
+self._isRequestingCall = false;
+self.Whistle();
+}
+elif (newOwner == Network.MasterClient && Network.IsMasterClient)
 {
 self._inUse = false;
-}
-elif (newOwner == Network.MyPlayer)
-{
-self._inUse = true;
-human = Network.MyPlayer.Character;
-if (human != null && human.Type == "Human")
-{
-human.MountTransform(self._horse, Vector3(0, 1.95, 0), Vector3.Zero);
-human.ClearHooks();
-self._human = human;
-}
+self._isCalled = false;
 }
 }
 
 function OnCollisionStay(other)
 {
-if (other.Type == "Human" && other.IsMine)
+if (other.Type == "Human" && other.IsMainCharacter && !other.IsMounted) 
 {
-diff = (other.Position - self.MapObject.Position);
-project = Vector3.Project(diff, self.MapObject.Forward);
-if (project.Magnitude > 3 * self.MapObject.Scale.Z && project.Normalized == self.MapObject.Forward)
-{
-if (!self._inUse && !self._riding && !other.IsMounted)
-{
-text = "Press " + Input.GetKeyName("Interaction/Interact") + " to drive wagon.";
+project = Vector3.Project(other.Position - self.MapObject.Position, self.MapObject.Forward);
+isCollidingRide = project.Normalized == self.MapObject.Forward;
+text = "";
+if (self._isCalled) { text += "Horse is following it's owner"; }
+elif (!self._inUse && isCollidingRide) { text += "Press " + Input.GetKeyName("Interaction/Interact") + " to ride"; }
+elif (!self._hasPassenger && !isCollidingRide) {text += "Press " + Input.GetKeyName("Interaction/Interact") + " to ride as passenger"; }
+else { return; }
+
 if (self._healthComponent != null) { text += " (" + Convert.ToString(self._healthComponent.GetHealth()) + "HP)"; }
+
+if (self._ownerId != -1 && self._owner != null) 
+{
+text += " (Owner: " + UI.WrapStyleTag("[" + self._ownerId + "]", "color", "orange") + self._owner.Name + ")";
+text += String.Newline;
+
+if (!self._inUse && self._ownerId == Network.MyPlayer.ID && !self._isCalled)
+{
+text += "Follow [" + Input.GetKeyName("Interaction/Interact2") + "]  Unclaim [" + Input.GetKeyName("Interaction/Interact3") + "]";
+}
+}
+
 UI.SetLabelForTime("MiddleCenter", text, 0.1);
-self._collidingHuman = other;
-self._collidingDrive = true;
-}
-}
-elif (project.Magnitude > 4 * self.MapObject.Scale.Z && project.Normalized == self.MapObject.Forward * -1.0)
-{
-if (!self._inUse && !self._riding && self.CanSupply && !other.IsMounted)
-{
-if (self.InfiniteSupply)
-{
-UI.SetLabelForTime("MiddleCenter", "Press " + Input.GetKeyName("Interaction/Interact") + " to refill.", 0.1);
-self._collidingHuman = other;
-self._collidingGas = true;
-}
-else
-{
-left = Math.Max(self._supplyTimesLeft, 0);
-UI.SetLabelForTime("MiddleCenter", "Press " + Input.GetKeyName("Interaction/Interact") + " to refill (" + Convert.ToString(self._supplyTimesLeft) + " left.)", 0.1);
-if (left > 0)
-{
-self._collidingHuman = other;
-self._collidingGas = true;
-}
-}
-}
-}
-else
-{
-if (!self._riding && !other.IsMounted)
-{
-text = "Press " + Input.GetKeyName("Interaction/Interact") + " to ride wagon.";
-if (self._healthComponent != null) { text += " (" + Convert.ToString(self._healthComponent.GetHealth()) + "HP)"; }
-UI.SetLabelForTime("MiddleCenter", text, 0.1);
-self._collidingHuman = other;
-self._collidingRide = true;
-}
-}
+if (isCollidingRide) { self._collidingRide = other; }
+else { self._collidingPassenger = other; }
+if (RoomData.GetProperty(self._HorseProperty, null) == null) { RoomData.SetProperty(self._HorseProperty, self.MapObject.ID); }
 }
 }
 
 function OnTick()
 {
-self._collidingHuman = null;
-self._collidingDrive = false;
-self._collidingRide = false;
-self._collidingGas = false;
+myCharacter = Network.MyPlayer.Character;
 
-if (self._leftWheel != null && self._rightWheel != null)
+self._collidingRide = null;
+self._collidingPassenger = null;
+if (RoomData.GetProperty(self._HorseProperty, null) != null && RoomData.GetProperty(self._HorseProperty, null) == self.MapObject.ID) 
+{ RoomData.SetProperty(self._HorseProperty, null); }
+
+if (self._callTimeRemaining > 0) { self._callTimeRemaining -= Time.TickTime; }
+if (self._jumpCooldown > 0) { self._jumpCooldown -= Time.TickTime; }
+
+if (myCharacter != null && myCharacter.Type == "Human" && myCharacter.IsMounted && myCharacter.MountedTransform == self._horse 
+&& (self._human == null || !self.MapObject.Active))
 {
-L = Vector3.Distance(self._leftWheel.Position, self._rightWheel.Position);
-r = self._leftWheel.Scale.Y / 2;
+myCharacter.Unmount(); # Prevent stuck players
+}
 
-localVelocity = self.MapObject.Transform.InverseTransformDirection(self._rigidbody.GetVelocity());
-angularVelocity = self._rigidbody.GetAngularVelocity();
+if (self.NetworkView.Owner != Network.MyPlayer) { return; }
 
-v_x = localVelocity.Z;
-omega = angularVelocity.Y;
+if (self._inUse && !self._isPassenger && self._human != null)
+{
+if (self._human.HasTargetDirection)
+{
+self.MapObject.Forward = Vector3.Lerp(self.MapObject.Forward, self._human.TargetDirection, self.RotateSpeed * Time.FrameTime);
+self._rigidbody.AddForce(self.MapObject.Forward * self.MoveForce);
+}
+else
+{
+self.SlowToStop();
+}
+self.LimitSpeed();
+}
+elif (myCharacter != null && myCharacter.Type == "Human" && self._isCalled)
+{
+myPosition = myCharacter.Position;
+myPosition.Y = self.MapObject.Position.Y; # Ignore height in distance check
+distanceToOwner = Vector3.Distance(self.MapObject.Position, myPosition);
 
-leftWheelRotationSpeed = (v_x - (L / 2) * omega) / r;
-rightWheelRotationSpeed = (v_x + (L / 2) * omega) / r;
+if (self._isFollowing && distanceToOwner < self.FollowDistance) 
+{
+velocity = self._rigidbody.GetVelocity();
+velocityY = velocity.Y;
+velocity *= 0.2;
+velocity.Y = velocityY;
 
-leftWheelRotation = leftWheelRotationSpeed * Time.TickTime * Math.Rad2DegConstant * 0.3; # Character moves too fast for irl physics
-rightWheelRotation = rightWheelRotationSpeed * Time.TickTime * Math.Rad2DegConstant * 0.3;
+self._rigidbody.SetVelocity(velocity);
+return; 
+}
 
-self._leftWheel.Rotate(Vector3(leftWheelRotation, 0, 0));
-self._rightWheel.Rotate(Vector3(rightWheelRotation, 0, 0));
+if (!self._isFollowing && (self._callTimeRemaining <= 0 || distanceToOwner < 10)) 
+{
+if (self._callTimeRemaining <= 0)
+{
+self.SetOwnerId(-1);
+UI.SetLabelForTime("MiddleCenter", "*Your horse couldn't reach you and got lost..", 1.5);
+}
+else
+{
+UI.SetLabelForTime("MiddleCenter", "*Your horse came to you..", 1.5);
+}
 
+velocity = self._rigidbody.GetVelocity();
+
+self._rigidbody.SetVelocity(velocity * 0.2);
+self._isCalled = false;
+self.MapObject.GetTransform("CrazySound").PlaySound();
+
+self.NetworkView.Transfer(Network.MasterClient);
+return;
+}
+
+directionToPlayer = (myCharacter.Position - self.MapObject.Position).Normalized;
+directionToPlayer.Y = 0;
+
+self.MapObject.Forward = directionToPlayer;
+self._rigidbody.AddForce(directionToPlayer * self.MoveForce * 1.5);
+self.LimitSpeed();
+}
+
+if (!self._inUse && !self._isCalled && self.NetworkView.Owner == Network.MyPlayer) { self.SlowToStop(); }
+
+if (self._human != null && (!self._human.IsMounted || self._human.MountedTransform != self._horse))
+{
+self._human = null;
+if (self._isPassenger)
+{
+self.SetHasPassenger(false);
+self._isPassenger = false;
+}
+else
+{
+self._inUse = false;
+self.NetworkView.Transfer(Network.MasterClient);
+}
 }
 }
 
 function OnFrame()
-{   
-dismountVelocity = self._rigidbody.GetVelocity();
-dismountVelocity.Y += 12.0;
+{
+if (self._human != null) { self.AnimateRider(); }
+self.AnimateHorse();
+
+if (self._inUse && !self._isPassenger && self._human != null && self.NetworkView.Owner == Network.MyPlayer) 
+{
+if (Input.GetKeyDown("Human/HorseJump") && self._jumpCooldown <= 0 && Physics.LineCast(self.MapObject.Position, self.MapObject.Position - Vector3.Up * 5.0, "MapObjects") != null)
+{
+self._jumpCooldown = 1;
+self._rigidbody.AddForce(self.MapObject.Up * self.JumpForce);
+}
+elif ((Input.GetKeyDown("Interaction/Interact") || Input.GetKeyDown("Human/Jump") 
+|| Input.GetKeyDown("Human/HookLeft") || Input.GetKeyDown("Human/HookRight"))) 
+{
+self.DismountHorse(true);
+}
+}
+elif (self._hasPassenger && self._isPassenger && self._human != null && Input.GetKeyDown("Interaction/Interact"))
+{
+self.SetHasPassenger(false);
+self._human.Unmount();
+self._human = null;
+self._isPassenger = false;
+}
+elif (!self._inUse && !self._isCalled && self._collidingRide != null && !self._collidingRide.IsMounted && Input.GetKeyDown("Interaction/Interact"))
+{
 if (self.NetworkView.Owner == Network.MyPlayer)
 {
-if (self._inUse)
-{
-ySpeed = self._rigidbody.GetVelocity().Y;
-FrameFactor = Time.FrameTime/0.007;
-if (ySpeed <= 0.7 && self._jumpCoolDown > 0)
-{
-self._jumpCoolDown -= Time.FrameTime;
-if (self._jumpCoolDown < 0)
-{
-self._jumpCoolDown = 0;
-}
-}
-if (Input.GetKeyDown("Human/HorseJump") && self._jumpCoolDown <= 0 && Math.Abs(ySpeed) < 0.7)
-{
-upVec = self.MapObject.Up * self.JumpForce * 0.5 * (0-self._rigidbody.Gravity.Y);
-# Game.Print("Force 5");
-self._rigidbody.AddForce(upVec);
-self.LimitSpeed();
-self._jumpCoolDown = 1;
-}
-elif (self._human.HasTargetDirection)
-{
-self.MapObject.Forward = Vector3.Lerp(self.MapObject.Forward, self._human.TargetDirection, self.RotateSpeed * Time.FrameTime);
-# Game.Print("Frame Time " +  Time.FrameTime);
-self._rigidbody.AddForce(self.MapObject.Forward * self.MoveForce * (1/self.MapObject.Forward.Magnitude) * FrameFactor);
-self.LimitSpeed();
-# Game.Print("Speed " + self._rigidbody.Gravity + self.MapObject.Forward * self.MoveForce + self._rigidbody.Mass);
+self.MountHorse(self._collidingRide);
 }
 else
 {
-velocity = self._rigidbody.GetVelocity();
-if (velocity.Magnitude < 1)
-{
-self._rigidbody.SetVelocity(Vector3.Up * velocity.Y);
-}
-else
-{
-self._rigidbody.AddForce(-0.5 * velocity.Normalized * velocity.Magnitude * FrameFactor);
-}
-}
-
-if (self._rigidbody.GetVelocity().Magnitude > 1)
-{
-self._human.PlayAnimation("Armature|horse_run");
-}
-else
-{
-self._human.PlayAnimation("Armature|horse_idle");
-}
-
-if (Input.GetKeyDown("Interaction/Interact") || Input.GetKeyDown("Human/HookLeft") || Input.GetKeyDown("Human/HookRight") || Input.GetKeyDown("Human/Jump"))
-{
-self._human.Velocity = dismountVelocity;
-self._human.Unmount();
-self.NetworkView.Transfer(Network.MasterClient);
-self._inUse = false;
-return;
-}
-
-if (self.NetworkView.Owner.Character == null || self.NetworkView.Owner.Character.Type != "Human" || self.NetworkView.Owner.Character.MountedTransform != self._horse)
-{
-self.NetworkView.Transfer(Network.MasterClient);
-self._inUse = false;
-return;
-}
-}
-}
-if (self._riding)
-{
-if (self._human == null || self._human.MountedMapObject != self.MapObject)
-{
-self._riding = false;
-return;
-}
-if (Input.GetKeyDown("Interaction/Interact") || Input.GetKeyDown("Human/HookLeft") || Input.GetKeyDown("Human/HookRight") || Input.GetKeyDown("Human/Jump"))
-{
-self._human.Velocity = dismountVelocity;
-self._human.Unmount();
-self._riding = false;
-}
-else
-{
-self._human.PlayAnimation("Armature|horse_idle");
-}
-}
-if (self._collidingHuman != null)
-{
-if (Input.GetKeyDown("Interaction/Interact"))
-{
-if (self._collidingDrive && !self._collidingHuman.IsMounted && !self._inUse)
-{
-if (self.NetworkView.Owner == Network.MyPlayer) 
-{
-self._inUse = true;
-self._collidingHuman.MountTransform(self._horse, Vector3(0, 1.95, 0), Vector3.Zero);
-self._collidingHuman.ClearHooks();
-self._human = self._collidingHuman;
-}
-else
-{
+self._isRequestingMount = true;
 self.NetworkView.SendMessage(self.NetworkView.Owner, "request");
 }
 }
-elif (self._collidingGas && !self._inUse)
+elif (!self._hasPassenger && !self._isCalled && self._collidingPassenger != null && !self._collidingPassenger.IsMounted && Input.GetKeyDown("Interaction/Interact"))
 {
-if (self._collidingHuman.Refill(true))
-{
-self.UseSupply();
-}
-}
-elif (self._collidingRide && !self._collidingHuman.IsMounted && !self._riding)
-{
-self._riding = true;
-self._human = self._collidingHuman;
-posA = self._leftSitTransform.LocalPosition; # Vector3(-1.0, 1.78, -3.5);
-posB = self._rightSitTransform.LocalPosition; # Vector3(1.0, 1.78, 1.0);
-self._human.MountMapObject(self.MapObject, Random.RandomVector3(posA, posB), Vector3(0, 0, 0));
+self.SetHasPassenger(true);
+self._human = self._collidingPassenger;
+self._human.MountTransform(self._horse, Vector3(0, 1.95, -0.4), Vector3.Zero);
 self._human.ClearHooks();
+self._isPassenger = true;
+}
+elif ((!self._isCalled || self._isFollowing) && self._human == null && self._ownerId == Network.MyPlayer.ID 
+&& (RoomData.GetProperty(self._HorseProperty, null) == null || RoomData.GetProperty(self._HorseProperty, null) == self.MapObject.ID) 
+&& Input.GetKeyDown("Interaction/Interact2"))
+{
+if (self.NetworkView.Owner == Network.MyPlayer)
+{
+self.Whistle();
+}
+else
+{
+self._isRequestingCall = true;
+self.NetworkView.SendMessage(self.NetworkView.Owner, "request");
 }
 }
+elif (!self._inUse && !self._isCalled && self._collidingRide != null 
+&& self._ownerId == Network.MyPlayer.ID && Input.GetKeyDown("Interaction/Interact3"))
+{
+self.SetOwnerId(-1);
+self.MapObject.GetTransform("Idle3Sound").PlaySound();
 }
-self.UpdateHorse();
+}
+
+function DismountHorse(transfer) {
+self.MapObject.GetTransform("Idle2Sound").PlaySound();
+
+dismountVelocity = self._rigidbody.GetVelocity();
+dismountVelocity.Y += 12.0;
+
+self._human.Unmount();
+self._human.Velocity = dismountVelocity;
+self._human = null;
+self._inUse = false;
+if (transfer)
+{
+self.NetworkView.Transfer(Network.MasterClient);
+}
+}
+
+function MountHorse(human)
+{
+if (human == null || human.IsMounted) {
+self.NetworkView.Transfer(Network.MasterClient);
+return;
+}
+
+self.MapObject.GetTransform("Idle2Sound").PlaySound();
+
+self._human = human;
+self._inUse = true;
+self._isCalled = false;
+
+human.MountTransform(self._horse, Vector3(0, 1.95, 0.1), Vector3.Zero);
+human.ClearHooks();
+
+if (self._ownerId == -1)
+{
+self.SetOwnerId(self._human.Player.ID);
+}
+}
+
+function Whistle()
+{
+self._callTimeRemaining = self.MaxCallTime;
+self._isCalled = true;
+self._inUse = false;
+
+Network.MyPlayer.Character.Emote("Eat");
+
+if (!self._isFollowing && self._collidingRide != null)
+{
+self._isFollowing = true;
+UI.SetLabelForTime("MiddleCenter", "*Whistle!*" + String.Newline + "*You order your horse to follow..", 1.5);
+}
+else
+{
+self._isFollowing = false;
+UI.SetLabelForTime("MiddleCenter", "*Whistle!*" + String.Newline + "*You call for your horse..", 1.5);
+}
+
+self.MapObject.GetTransform("CrazySound").PlaySound();
+}
+
+function AnimateRider() {
+if (self._isPassenger) { self._human.PlayAnimation("Armature|horse_idle"); }
+elif (self._rigidbody.GetVelocity().Magnitude > 1) { self._human.PlayAnimation("Armature|horse_run");}
+else { self._human.PlayAnimation("Armature|horse_idle"); }
+}
+
+function AnimateHorse()
+{
+if (self._rigidbody.GetVelocity().Magnitude > 1) { self._horse.PlayAnimation("horse_Run"); }
+else { self._horse.PlayAnimation("horse_idle0"); }
+}
+
+function SlowToStop()
+{
+velocity = self._rigidbody.GetVelocity();
+velocityY = velocity.Y;
+velocity.Y = 0;
+
+if (velocity.Magnitude < 1) { self._rigidbody.SetVelocity(Vector3.Up * velocityY); }
+else { self._rigidbody.AddForce(-0.5 * velocity + velocityY * Vector3.Up); }
 }
 
 function LimitSpeed()
 {
 velocity = self._rigidbody.GetVelocity();
-y = velocity.Y;
+velocityY = velocity.Y;
 velocity.Y = 0;
 velocity = velocity.Normalized * Math.Min(velocity.Magnitude, self.MaxMoveSpeed);
-velocity.Y = y;
-# Game.Print("Jump " + velocity + self.MapObject.Up);
+velocity.Y = velocityY;
 self._rigidbody.SetVelocity(velocity);
 }
 
-function UpdateHorse()
+function SetOwnerId(value)
 {
-if (self._rigidbody.GetVelocity().Magnitude > 1)
-{
-self._horse.PlayAnimation("horse_Run");
-self.MapObject.GetTransform("RunSound").PlaySound();
-self.MapObject.GetTransform("Dust").ToggleParticle(true);
-}
+self._ownerId = value;
+
+if (self._ownerId == -1) { self._owner = null; }
 else
 {
-self._horse.PlayAnimation("horse_idle0");
-self.MapObject.GetTransform("RunSound").StopSound();
-self.MapObject.GetTransform("Dust").ToggleParticle(false);
+for (player in Network.Players)
+{
+if (player.ID == self._ownerId) { self._owner = player; break; }
+}  
 }
+self.NetworkView.SendMessageOthers("o" + Convert.ToString(self._ownerId));
+}
+
+function SetHasPassenger(value)
+{
+self._hasPassenger = value;
+self.NetworkView.SendMessageOthers("p" + Convert.ToString(self._hasPassenger));
 }
 }
 /// Weather

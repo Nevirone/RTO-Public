@@ -7878,6 +7878,7 @@ wait self.BuildDelay;
 }
 }
 }
+
 component Cannon
 {
 UnlimitedAmmo = false;
@@ -8372,10 +8373,11 @@ self._rightWheel.Rotate(Vector3(rightWheelRotation, 0, 0));
 
 if (self._inUseCannon)
 {
-if (self._human != Network.MyPlayer.Character)
+if (self._human != Network.MyPlayer.Character || (self._human != null && self._human.MountedTransform != self._humanMount))
 {
 self._inUseCannon = false;
 self.NetworkView.SendMessage(self.NetworkView.Owner, "c");
+Camera.SetManual(false);
 return;
 }
 if (self._rotationSyncCoolDdown <= 0 && self._hasRotateCannon)
