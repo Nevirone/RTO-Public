@@ -2093,6 +2093,14 @@ if (self._pushCooldown > 0) { self._pushCooldown -= Time.TickTime; }
 if (self._erenCooldown > 0 && Network.MyPlayer.Character != null && Network.MyPlayer.Character.Type == "Human") 
 { self._erenCooldown -= Time.TickTime; }
 
+if (!RoomData.GetProperty(PropertyEnum.MusicToggle, true))
+{
+for (object in self._musicObjectList) 
+{ 
+object.Active = false; 
+}
+}
+
 if(!Network.IsMasterClient) { return; }
 
 if (self._timeCounter > 0) { self._timeCounter -= Time.TickTime; }
@@ -2110,14 +2118,6 @@ elif(self._timeOfDay == DayTimeEnum.Night)
 self._timeOfDay = DayTimeEnum.Day;
 self._timeCounter = self.DayDuration;
 self.TitanChangeTime();
-}
-}
-
-if (!RoomData.GetProperty(PropertyEnum.MusicToggle, true))
-{
-for (object in self._musicObjectList) 
-{ 
-object.Active = false; 
 }
 }
 }
