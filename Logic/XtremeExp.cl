@@ -685,6 +685,7 @@ function OnButtonClick(buttonName)
 {
 myPlayer = Network.MyPlayer;
 myCharacter = Network.MyPlayer.Character;
+updateHealth = false;
 if(buttonName == "Settings")
 {
 UI.ShowPopup("Settings");
@@ -801,6 +802,7 @@ return;
 }
 myPlayer.SetCustomProperty(NamesEnum.Rank, RanksEnum.Commander);
 Game.Print("You are now the Commander of " + formation + ".");
+self.SetRankHealth(myCharacter);
 UI.HidePopup("RankPopup");
 }
 }
@@ -820,6 +822,7 @@ return;
 }
 myPlayer.SetCustomProperty(NamesEnum.Rank, RanksEnum.SectionCommander);
 Game.Print("You are now the Section Commander for " + squad + " in " + formation + ".");
+self.SetRankHealth(myCharacter);
 UI.HidePopup("RankPopup");
 }
 elif(buttonName == "ChooseEren")
@@ -833,6 +836,7 @@ return;
 myPlayer.SetCustomProperty(NamesEnum.Rank, RanksEnum.Eren);
 self._erenTransformationCounter = 0;
 Game.Print("You chose rank: Eren.");
+self.SetRankHealth(myCharacter);
 UI.HidePopup("RankPopup");
 }
 elif (buttonName == "ChooseMedic")
@@ -852,6 +856,7 @@ return;
 myPlayer.SetCustomProperty(NamesEnum.Rank, RanksEnum.Medic);
 self._bandagesUsedCounter = 0;
 Game.Print("You chose rank: Medic.");
+self.SetRankHealth(myCharacter);
 UI.HidePopup("RankPopup");
 }
 elif (buttonName == "ChooseEngineer")
@@ -871,6 +876,7 @@ return;
 myPlayer.SetCustomProperty(NamesEnum.Rank, RanksEnum.Engineer);
 self._resourcesUsed = 0;
 Game.Print("You chose rank: Engineer.");
+self.SetRankHealth(myCharacter);
 UI.HidePopup("RankPopup");
 }
 elif (buttonName == "ChooseCommunicationOfficer"){
@@ -887,22 +893,24 @@ return;
 }
 myPlayer.SetCustomProperty(NamesEnum.Rank, RanksEnum.CommunicationOfficer);
 Game.Print("You chose rank: Communication Officer.");
+self.SetRankHealth(myCharacter);
 UI.HidePopup("RankPopup");
 }
 elif (buttonName == "ChoosePrivate"){
 myPlayer.SetCustomProperty(NamesEnum.Rank, RanksEnum.Private);
 Game.Print("You chose rank: Private.");
+self.SetRankHealth(myCharacter);
 UI.HidePopup("RankPopup");
 }
 elif (buttonName == "ChooseCadet"){
 myPlayer.SetCustomProperty(NamesEnum.Rank, RanksEnum.Cadet);
 Game.Print("You chose rank: Cadet.");
+self.SetRankHealth(myCharacter);
 UI.HidePopup("RankPopup");
 }
 }
 
 self.SetRankWeapon(myCharacter);
-self.SetRankHealth(myCharacter);
 self.UpdateSquadRank();
 self.SetLegend();
 self.SetObjectives();
@@ -1476,10 +1484,10 @@ label += String.Newline + String.Newline;
 
 # Engineer
 label += self.GetStringColorWrapped("Left Engineer Count: ", RanksEnum.Engineer);
-label += Convert.ToString(leftMedicCount);
+label += Convert.ToString(leftEngineerCount);
 label += "    ";
 label += self.GetStringColorWrapped("Right Engineer Count: ", RanksEnum.Engineer);
-label += Convert.ToString(rightMedicCount);
+label += Convert.ToString(rightEngineerCount);
 label += String.Newline + String.Newline;
 
 # Cadets and Privates
@@ -2076,7 +2084,6 @@ if(Input.GetKeyDown("Interaction/QuickSelect7"))
 self._outlineMode += 1;
 self._outlineMode = Math.Mod(self._outlineMode, 4);
 self.SetChatLabel();
-Network.MyPlayer.Character.Unmount();
 }
 
 if(Input.GetKeyDown("Interaction/QuickSelect8"))
