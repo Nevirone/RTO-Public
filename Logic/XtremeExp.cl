@@ -1999,7 +1999,7 @@ if (myCharacter.Type == "Shifter")
 {
 Network.SendMessage(Network.MasterClient, "ErenUnshift");
 }
-elif (myCharacter.Type == "Human" && self._erenCooldown <= 0 && self._erenTransformationCounter < self.ErenTransformations)
+elif (myCharacter.Type == "Human" && !myCharacter.IsMounted && self._erenCooldown <= 0 && self._erenTransformationCounter < self.ErenTransformations)
 {
 myCharacter.SetSpecial("Eren"); 
 myCharacter.SpecialCooldown = 0;
@@ -2076,6 +2076,7 @@ if(Input.GetKeyDown("Interaction/QuickSelect7"))
 self._outlineMode += 1;
 self._outlineMode = Math.Mod(self._outlineMode, 4);
 self.SetChatLabel();
+Network.MyPlayer.Character.Unmount();
 }
 
 if(Input.GetKeyDown("Interaction/QuickSelect8"))
