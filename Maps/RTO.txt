@@ -8887,6 +8887,8 @@ TITAN.CustomDamage = damage;
 component DestroyableObject
 {
 MaxHealth = 300;
+Center = Vector3(0,3,0);
+ColliderSize = Vector3(1.5,2,3.4);
 Team = "Human";
 DamageEffect = "";
 DamageEffectScale = 1.0;
@@ -8902,7 +8904,7 @@ _invincibleTimer = 0;
 
 function Init()
 {
-self.MapObject.AddBoxCollider("Region", "Hitboxes");
+self.MapObject.AddBoxCollider("Region", "Hitboxes", self.Center, self.ColliderSize);
 self._currentHealth = self.MaxHealth;
 }
 
