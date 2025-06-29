@@ -5,15 +5,13 @@ Description = "Xtreme Expedition! Explore what lies beyond the walls!";
 TrainingMode = false;
 StartTitansAmount = 45;
 DifficultyMultiplier = 1.0;
-SuppliesPerWagon = 40;
+SuppliesPerWagon = 25;
+AmmoPerWagon = 50;
+CannonDamage = 200;
 TitanBaseDamage = 100;
 TitanDamageChange = 50;
-AmmoPerWagon = 100;
-DayDuration = 360.0;
-NightDuration = 180.0;
 StartWithGas = true;
 SkillBan = true;
-FirstPerson = false;
 AllowOneWingWin = false;
 AllowOneWingWinTooltip = "Allow win on capturing last zone with not every zone captured";
 AllowAnnieSurviveWin = true;
@@ -25,9 +23,6 @@ HumanChatProximity = 400.0;
 HumanChatProximityTooltip = "Distance for humans to see allied text chat in Proximity mode.";
 OutlineRange = 300.0;
 OutlineRangeTooltip = "Distance for humans to see other humans outlined";
-
-HumanInteractionDistance = 5.0;
-PushForce = 10.0;
 
 LeftReinforcementsEnabled = true;
 RightReinforcementsEnabled = true;
@@ -56,11 +51,17 @@ EnableAnnie = false;
 EnableAIShifterTooltip = "If enabled, Annie will spawn at a random capture point between Farm and Explore what lies Beyond the Walls.";
 AnnieHealth = 1000;
 AnnieHealthTooltip = "AI Annie's health";
+ShifterTransformationForce = true;
+ShifterTransformationDamage = true;
 
-ShifterExplosionForce = 50.0;
-ShifterExplosionDamage = 300.0;
-ShifterForceRange = 240.0;
-ShifterDamageRange = 120.0;
+_DayDuration = 360.0;
+_NightDuration = 180.0;
+_HumanInteractionDistance = 5.0;
+_PushForce = 10.0;
+_ShifterExplosionForce = 50.0;
+_ShifterExplosionDamage = 300.0;
+_ShifterForceRange = 240.0;
+_ShifterDamageRange = 120.0;
 
 # Other
 _hasSpawned = false;
@@ -168,6 +169,7 @@ _titanSizeDifference = 0;
 function Init()
 {
 Game.DefaultShowKillFeed = false;
+Game.DefaultShowKillScore = false;
 Game.ShowScoreboardLoadout = false;
 Game.ShowScoreboardStatus = false;
 if (Network.IsMasterClient) { Game.ShowScoreboardStatus = true; }
@@ -178,7 +180,10 @@ self._chatModeList.Add(ChatTypeEnum.Proximity);
 self._chatModeList.Add(ChatTypeEnum.Squad);
 self._chatModeList.Add(ChatTypeEnum.Formation);
 self._chatModeList.Add(ChatTypeEnum.Officer);
-if (self.EnableHumanAllChat) { self._chatModeList.Add(ChatTypeEnum.All); }
+if (self.EnableHumanAllChat) { 
+self._chatModeList.Add(ChatTypeEnum.All);
+self._chatModeIndex = self._chatModeList.Count - 1; 
+}
 
 minSize = Game.GetTitanSetting(SettingNames.TitanSizeMin);
 maxSize = Game.GetTitanSetting(SettingNames.TitanSizeMax);
@@ -238,12 +243,6 @@ self.FindClosestRepairable();
 self.OutlineHumans();
 self.ProcessCaptureZones();
 self.SetBottomLabel();
-
-if(myCharacter != null)
-{
-if(self.FirstPerson && myCharacter.Type == "Human") { Camera.FollowDistance = 0.0; }
-elif(self.FirstPerson && myCharacter.Type == "Shifter") { Camera.FollowDistance = 1.00; }
-}
 
 if (rank == RanksEnum.Eren || rank == RanksEnum.Medic || rank == RanksEnum.Engineer) { self.SetLegend(); }
 
@@ -335,19 +334,19 @@ explosionDamage = 300.0;
 explosionMaxRange = 240.0;
 damageMaxRange = 120.0;
 
-if (distance < self.ShifterForceRange)
+if (self.ShifterTransformationForce && distance < self._ShifterForceRange)
 {
 scale = 1;
-if (distance > (self.ShifterForceRange / 2)) { scale -= (distance - (self.ShifterForceRange / 2)) / (self.ShifterForceRange / 2); }
+if (distance > (self._ShifterForceRange / 2)) { scale -= (distance - (self._ShifterForceRange / 2)) / (self._ShifterForceRange / 2); }
 direction = myCharacter.Position - character.Position;
 direction.Y = 0;
-myCharacter.AddForce(direction.Normalized * self.ShifterExplosionForce + Vector3.Up * self.ShifterExplosionForce / 5, "Impulse");
+myCharacter.AddForce(direction.Normalized * self._ShifterExplosionForce + Vector3.Up * self._ShifterExplosionForce / 5, "Impulse");
 
-if (distance < self.ShifterDamageRange)
+if (self.ShifterTransformationDamage && distance < self._ShifterDamageRange)
 {
 scale = 1;
-if (distance > (self.ShifterDamageRange / 2)) { scale -= (distance - (self.ShifterDamageRange / 2)) / (self.ShifterDamageRange / 2); }
-myCharacter.GetDamaged("Impact", self.ShifterExplosionDamage * scale);
+if (distance > (self._ShifterDamageRange / 2)) { scale -= (distance - (self._ShifterDamageRange / 2)) / (self._ShifterDamageRange / 2); }
+myCharacter.GetDamaged("Impact", self._ShifterExplosionDamage * scale);
 }
 }
 }
@@ -383,8 +382,22 @@ else { character.SetSpecial(self._selectedSpecial); }
 
 function OnCharacterDamaged(victim, killer, killerName, damage)
 {
+score = damage;
+if (killer != null && killer.Type == "Human" && killer.IsMounted)
+{
+victim.Health += damage;
+victim.GetDamaged(killerName, self.CannonDamage);
+score = self.CannonDamage;
+}
+
 if (victim.Type == "Human" )
 {
+if (victim.IsMainCharacter && killer != null && killer.Type == "Titan" 
+&& (killer.CurrentAnimation == "Amarture_VER2|eat.l" || killer.CurrentAnimation == "Amarture_VER2|eat.r"))
+{
+victim.GetDamaged("Titan", victim.MaxHealth);
+}
+
 if (Network.MyPlayer.Character != null && Network.MyPlayer.Character == victim)
 {
 self.SetBottomLabel();
@@ -396,6 +409,8 @@ elif (victim.Type == "Shifter")
 {
 self.SetObjectives();
 }
+
+if (killer != null && killer.IsMainCharacter) { Game.ShowKillScore(score); }
 }
 
 function OnCharacterDie(victim, killer, killerName)
@@ -1061,7 +1076,7 @@ for (player in Network.Players)
 {
 if (player.Character == null && player.GetCustomProperty(NamesEnum.Formation) == FormationsEnum.Right)
 {
-Game.SpawnPlayerAt(player, false, self._rightReinforcementsSpawn);
+    Game.SpawnPlayerAt(player, false, self._rightReinforcementsSpawn);
 }
 }
 Game.PrintAll("Right Wing got reinforced..");
@@ -1080,7 +1095,7 @@ for (player in Network.Players)
 {
 if (player.Character == null && player.GetCustomProperty(NamesEnum.Formation) == FormationsEnum.Left)
 {
-Game.SpawnPlayerAt(player, false, self._leftReinforcementsSpawn);
+    Game.SpawnPlayerAt(player, false, self._leftReinforcementsSpawn);
 }
 }
 Game.PrintAll("Left Wing got reinforced..");
@@ -1801,7 +1816,7 @@ for(human in Game.PlayerHumans)
 if (human == myCharacter) { continue; }
 
 humanDistance = Vector3.Distance(myCharacter.Position, human.Position);
-if(humanDistance < self.HumanInteractionDistance && (self._closestHuman == null || humanDistance < self._closestHumanDistance))
+if(humanDistance < self._HumanInteractionDistance && (self._closestHuman == null || humanDistance < self._closestHumanDistance))
 {
 self._closestHuman = human;
 self._closestHumanDistance = humanDistance;
@@ -2117,13 +2132,13 @@ if(self._timeCounter <= 0)
 if(self._timeOfDay == DayTimeEnum.Day)
 {
 self._timeOfDay = DayTimeEnum.Night;
-self._timeCounter = self.NightDuration;
+self._timeCounter = self._NightDuration;
 self.TitanChangeTime();
 }
 elif(self._timeOfDay == DayTimeEnum.Night)
 {
 self._timeOfDay = DayTimeEnum.Day;
-self._timeCounter = self.DayDuration;
+self._timeCounter = self._DayDuration;
 self.TitanChangeTime();
 }
 }
@@ -2151,7 +2166,7 @@ if (myCharacter != null && human != null)
 {
 direction = myCharacter.Position - human.Position;
 direction.Y = 0;
-myCharacter.AddForce(direction.Normalized * self.PushForce + Vector3.Up * 0.5 * self.PushForce, "Impulse");
+myCharacter.AddForce(direction.Normalized * self._PushForce + Vector3.Up * 0.5 * self._PushForce, "Impulse");
 }
 }
 }

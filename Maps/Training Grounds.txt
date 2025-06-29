@@ -1232,37 +1232,34 @@ Scene,Decor/Wagon1,1528,0,1,1,1,0,Wagon1,-72.21484,3.616699,58.94248,344.2242,27
 Scene,FX/DebrisFX2,1531,0,1,0,1,0,DebrisFX2,-90.18969,-0.01269773,228.7584,270,332.1041,0,0.4,0.4,0.4,None,Entities,Default,DefaultNoTint|255/255/255/255,;
 Scene,General/EditorPointLight,1532,0,1,1,0,0,PointLight,130.8596,232.3188,-132.7328,0,0,0,1,1,1,None,Entities,Default,DefaultNoTint|255/255/255/255,PointLight|Color:255/150/0/255|Intensity:2|Range:20;
 Scene,Nature/TreeRoot1,1534,0,1,1,1,0,TreeRoot1,-87.10043,-0.5568727,685.2662,12.79906,165.2952,356.6727,1,1,1,Physical,Entities,Default,Default|255/255/255/255,;
-Scene,Interact/Horse1,1535,0,1,0,1,1,Horse1,23.95429,0.00625465,-24.79093,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1537,0,1,0,1,1,Horse1,23.95429,0.00625465,-18.12062,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1538,0,1,0,1,1,Horse1,23.95429,0.00625465,-11.32109,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1539,0,1,0,1,1,Horse1,30.23052,0.00625465,-18.12062,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1540,0,1,0,1,1,Horse1,30.23052,0.00625465,-24.79093,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1541,0,1,0,1,1,Horse1,30.23052,0.00625465,-11.32109,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1542,0,1,0,1,1,Horse1,36.7948,0.00625465,-18.12062,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1543,0,1,0,1,1,Horse1,36.7948,0.00625465,-24.79093,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1544,0,1,0,1,1,Horse1,36.7948,0.00625465,-11.32109,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1545,0,1,0,1,1,Horse1,43.30494,0.00625465,-18.12062,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1546,0,1,0,1,1,Horse1,43.30494,0.00625465,-24.79093,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1547,0,1,0,1,1,Horse1,43.30494,0.00625465,-11.32109,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1548,0,1,0,1,1,Horse1,49.92682,0.00625465,-18.12062,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1549,0,1,0,1,1,Horse1,49.92682,0.00625465,-24.79093,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1550,0,1,0,1,1,Horse1,49.92682,0.00625465,-11.32109,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1551,0,1,0,1,1,Horse1,57.15535,0.00625465,-18.12062,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1552,0,1,0,1,1,Horse1,57.15535,0.00625465,-24.79093,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1553,0,1,0,1,1,Horse1,57.15535,0.00625465,-11.32109,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1554,0,1,0,1,1,Horse1,64.83059,0.00625465,-18.12062,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1555,0,1,0,1,1,Horse1,64.83059,0.00625465,-24.79093,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Horse1,1556,0,1,0,1,1,Horse1,64.83059,0.00625465,-11.32109,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|RotateSpeed:3.8|MaxCallTime:120|FollowDistance:10|InteractionRange:3;
-Scene,Interact/Wagon2a,1559,0,1,0,1,1,Wagon2a,11.13324,2.684978,-18.8126,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false,CannonWagon|MoveForce:20|JumpForce:5|MaxMoveSpeed:50|RotateSpeed:2|UnlimitedAmmo:true|MaxAmmo:10|Cooldown:3|ProjectileLiveTime:5|LimitVerticalRotation:true|VerticalRotation:45|LimitHorizontalRotation:false|HorizontalRotation:75;
-Scene,Interact/Wagon2a,1560,0,1,0,1,1,Wagon2a,11.13324,2.684978,-4.269014,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false,CannonWagon|MoveForce:20|JumpForce:5|MaxMoveSpeed:50|RotateSpeed:2|UnlimitedAmmo:true|MaxAmmo:10|Cooldown:3|ProjectileLiveTime:5|LimitVerticalRotation:true|VerticalRotation:45|LimitHorizontalRotation:false|HorizontalRotation:75;
-Scene,Interact/Wagon2a,1561,0,1,0,1,1,Wagon2a,1.250072,2.684978,-18.8126,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false,CannonWagon|MoveForce:20|JumpForce:5|MaxMoveSpeed:50|RotateSpeed:2|UnlimitedAmmo:true|MaxAmmo:10|Cooldown:3|ProjectileLiveTime:5|LimitVerticalRotation:true|VerticalRotation:45|LimitHorizontalRotation:false|HorizontalRotation:75;
-Scene,Interact/Wagon2a,1562,0,1,0,1,1,Wagon2a,1.250072,2.684978,-4.269014,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false,CannonWagon|MoveForce:20|JumpForce:5|MaxMoveSpeed:50|RotateSpeed:2|UnlimitedAmmo:true|MaxAmmo:10|Cooldown:3|ProjectileLiveTime:5|LimitVerticalRotation:true|VerticalRotation:45|LimitHorizontalRotation:false|HorizontalRotation:75;
-Scene,Interact/Wagon2a,1563,0,1,0,1,1,Wagon2a,-9.159418,2.684978,-18.8126,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false,CannonWagon|MoveForce:20|JumpForce:5|MaxMoveSpeed:50|RotateSpeed:2|UnlimitedAmmo:true|MaxAmmo:10|Cooldown:3|ProjectileLiveTime:5|LimitVerticalRotation:true|VerticalRotation:45|LimitHorizontalRotation:false|HorizontalRotation:75;
-Scene,Interact/Wagon2a,1564,0,1,0,1,1,Wagon2a,-9.159418,2.684978,-4.269014,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false,CannonWagon|MoveForce:20|JumpForce:5|MaxMoveSpeed:50|RotateSpeed:2|UnlimitedAmmo:true|MaxAmmo:10|Cooldown:3|ProjectileLiveTime:5|LimitVerticalRotation:true|VerticalRotation:45|LimitHorizontalRotation:false|HorizontalRotation:75;
-Scene,Interact/Wagon2c,1566,0,1,0,1,1,Wagon2c,-23.47384,2.684978,-18.8126,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Wagon|MoveForce:20|MaxMoveSpeed:50|RotateSpeed:3|JumpForce:5|CanSupply:true|InfiniteSupply:true|MaxSupplyTimes:40,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false;
-Scene,Interact/Wagon2c,1568,0,1,0,1,1,Wagon2c,-23.47384,2.684978,-4.269014,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Wagon|MoveForce:20|MaxMoveSpeed:50|RotateSpeed:3|JumpForce:5|CanSupply:true|InfiniteSupply:true|MaxSupplyTimes:40,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false;
-Scene,Interact/Wagon2c,1569,0,1,0,1,1,Wagon2c,-33.96255,2.684978,-18.8126,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Wagon|MoveForce:20|MaxMoveSpeed:50|RotateSpeed:3|JumpForce:5|CanSupply:true|InfiniteSupply:true|MaxSupplyTimes:40,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false;
-Scene,Interact/Wagon2c,1570,0,1,0,1,1,Wagon2c,-33.96255,2.684978,-4.269014,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Wagon|MoveForce:20|MaxMoveSpeed:50|RotateSpeed:3|JumpForce:5|CanSupply:true|InfiniteSupply:true|MaxSupplyTimes:40,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false;
+Scene,Interact/Horse1,1617,0,1,0,1,1,Horse1,52.15493,0.00625465,-24.89681,0,0,0,0.95,0.95,0.95,Physical,All,Default,Default|255/200/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:50|MaxRunSpeed:70|GallopMoveForce:50|RunMoveForce:70|JumpForceScale:1.25|RotateSpeed:3.9|RunStaminaCost:10|JumpStaminaCost:20|IsSettingsMaster:false|SettingsTag:HorseFemale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:300|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:HorseFemale;
+Scene,Interact/Horse1,1610,0,1,0,1,1,Horse1,64.83059,0.00625465,-6.1176,0,0,0,0.95,0.95,0.95,Physical,All,Default,Default|255/200/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:50|MaxRunSpeed:70|GallopMoveForce:50|RunMoveForce:70|JumpForceScale:1.25|RotateSpeed:3.9|RunStaminaCost:10|JumpStaminaCost:20|IsSettingsMaster:false|SettingsTag:HorseFemale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:300|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:HorseFemale;
+Scene,Interact/Horse1,1618,0,1,0,1,1,Horse1,58.24784,0.00625465,-23.88619,0,0,0,0.95,0.95,0.95,Physical,All,Default,Default|255/200/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:50|MaxRunSpeed:70|GallopMoveForce:50|RunMoveForce:70|JumpForceScale:1.25|RotateSpeed:3.9|RunStaminaCost:10|JumpStaminaCost:20|IsSettingsMaster:false|SettingsTag:HorseFemale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:300|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:HorseFemale;
+Scene,Interact/Horse1,1614,0,1,0,1,1,Horse1,52.15493,0.00625465,-6.1176,0,0,0,0.95,0.95,0.95,Physical,All,Default,Default|255/200/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:50|MaxRunSpeed:70|GallopMoveForce:50|RunMoveForce:70|JumpForceScale:1.25|RotateSpeed:3.9|RunStaminaCost:10|JumpStaminaCost:20|IsSettingsMaster:false|SettingsTag:HorseFemale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:300|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:HorseFemale;
+Scene,Interact/Horse1,1543,0,1,0,1,1,Horse1,36.7948,0.00625465,-24.79093,0,0,0,1.05,1.05,1.05,Physical,All,Default,Default|200/200/200/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:40|MaxRunSpeed:60|GallopMoveForce:40|RunMoveForce:60|JumpForceScale:1.2|RotateSpeed:3.6|RunStaminaCost:8|JumpStaminaCost:25|IsSettingsMaster:true|SettingsTag:HorseMale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:250|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:true|SettingsTag:HorseMale;
+Scene,Interact/Horse1,1625,0,1,0,1,1,Horse1,36.78824,0.00625465,-7.098801,0,0,0,1.05,1.05,1.05,Physical,All,Default,Default|200/200/200/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:40|MaxRunSpeed:60|GallopMoveForce:40|RunMoveForce:60|JumpForceScale:1.2|RotateSpeed:3.6|RunStaminaCost:8|JumpStaminaCost:25|IsSettingsMaster:false|SettingsTag:HorseMale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:250|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:HorseMale;
+Scene,Interact/Horse1,1613,0,1,0,1,1,Horse1,52.15493,0.00625465,-16.31734,0,0,0,0.95,0.95,0.95,Physical,All,Default,Default|255/200/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:50|MaxRunSpeed:70|GallopMoveForce:50|RunMoveForce:70|JumpForceScale:1.25|RotateSpeed:3.9|RunStaminaCost:10|JumpStaminaCost:20|IsSettingsMaster:false|SettingsTag:HorseFemale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:300|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:HorseFemale;
+Scene,Interact/Horse1,1624,0,1,0,1,1,Horse1,29.34832,0.00625465,-7.098801,0,0,0,1.05,1.05,1.05,Physical,All,Default,Default|200/200/200/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:40|MaxRunSpeed:60|GallopMoveForce:40|RunMoveForce:60|JumpForceScale:1.2|RotateSpeed:3.6|RunStaminaCost:8|JumpStaminaCost:25|IsSettingsMaster:false|SettingsTag:HorseMale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:250|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:HorseMale;
+Scene,Interact/Horse1,1623,0,1,0,1,1,Horse1,21.54654,0.00625465,-7.098801,0,0,0,1.05,1.05,1.05,Physical,All,Default,Default|200/200/200/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:40|MaxRunSpeed:60|GallopMoveForce:40|RunMoveForce:60|JumpForceScale:1.2|RotateSpeed:3.6|RunStaminaCost:8|JumpStaminaCost:25|IsSettingsMaster:false|SettingsTag:HorseMale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:250|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:HorseMale;
+Scene,Interact/Horse1,1609,0,1,0,1,1,Horse1,64.83059,0.00625465,-16.31734,0,0,0,0.95,0.95,0.95,Physical,All,Default,Default|255/200/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:50|MaxRunSpeed:70|GallopMoveForce:50|RunMoveForce:70|JumpForceScale:1.25|RotateSpeed:3.9|RunStaminaCost:10|JumpStaminaCost:20|IsSettingsMaster:false|SettingsTag:HorseFemale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:300|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:HorseFemale;
+Scene,Interact/Horse1,1612,0,1,0,1,1,Horse1,58.24784,0.00625465,-6.1176,0,0,0,0.95,0.95,0.95,Physical,All,Default,Default|255/200/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:50|MaxRunSpeed:70|GallopMoveForce:50|RunMoveForce:70|JumpForceScale:1.25|RotateSpeed:3.9|RunStaminaCost:10|JumpStaminaCost:20|IsSettingsMaster:false|SettingsTag:HorseFemale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:300|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:HorseFemale;
+Scene,Interact/Horse1,1622,0,1,0,1,1,Horse1,29.34832,0.00625465,-16.9327,0,0,0,1.05,1.05,1.05,Physical,All,Default,Default|200/200/200/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:40|MaxRunSpeed:60|GallopMoveForce:40|RunMoveForce:60|JumpForceScale:1.2|RotateSpeed:3.6|RunStaminaCost:8|JumpStaminaCost:25|IsSettingsMaster:false|SettingsTag:HorseMale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:250|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:HorseMale;
+Scene,Interact/Horse1,1621,0,1,0,1,1,Horse1,21.54654,0.00625465,-16.9327,0,0,0,1.05,1.05,1.05,Physical,All,Default,Default|200/200/200/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:40|MaxRunSpeed:60|GallopMoveForce:40|RunMoveForce:60|JumpForceScale:1.2|RotateSpeed:3.6|RunStaminaCost:8|JumpStaminaCost:25|IsSettingsMaster:false|SettingsTag:HorseMale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:250|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:HorseMale;
+Scene,Interact/Horse1,1620,0,1,0,1,1,Horse1,21.54654,0.00625465,-24.79093,0,0,0,1.05,1.05,1.05,Physical,All,Default,Default|200/200/200/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:40|MaxRunSpeed:60|GallopMoveForce:40|RunMoveForce:60|JumpForceScale:1.2|RotateSpeed:3.6|RunStaminaCost:8|JumpStaminaCost:25|IsSettingsMaster:false|SettingsTag:HorseMale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:250|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:HorseMale;
+Scene,Interact/Horse1,1619,0,1,0,1,1,Horse1,29.34832,0.00625465,-24.79093,0,0,0,1.05,1.05,1.05,Physical,All,Default,Default|200/200/200/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:40|MaxRunSpeed:60|GallopMoveForce:40|RunMoveForce:60|JumpForceScale:1.2|RotateSpeed:3.6|RunStaminaCost:8|JumpStaminaCost:25|IsSettingsMaster:false|SettingsTag:HorseMale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:250|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:HorseMale;
+Scene,Interact/Horse1,1626,0,1,0,1,1,Horse1,36.78824,0.00625465,-16.9327,0,0,0,1.05,1.05,1.05,Physical,All,Default,Default|200/200/200/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:40|MaxRunSpeed:60|GallopMoveForce:40|RunMoveForce:60|JumpForceScale:1.2|RotateSpeed:3.6|RunStaminaCost:8|JumpStaminaCost:25|IsSettingsMaster:false|SettingsTag:HorseMale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:250|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:HorseMale;
+Scene,Interact/Horse1,1555,0,1,0,1,1,Horse1,64.83059,0.00625465,-24.79093,0,0,0,0.95,0.95,0.95,Physical,All,Default,Default|255/200/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:50|MaxRunSpeed:70|GallopMoveForce:50|RunMoveForce:70|JumpForceScale:1.25|RotateSpeed:3.9|RunStaminaCost:10|JumpStaminaCost:20|IsSettingsMaster:true|SettingsTag:HorseFemale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:300|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:true|SettingsTag:HorseFemale;
+Scene,Interact/Horse1,1611,0,1,0,1,1,Horse1,58.24784,0.00625465,-16.31734,0,0,0,0.95,0.95,0.95,Physical,All,Default,Default|255/200/255/255,Rigidbody|Mass:20|Gravity:0/-900/0|FreezeRotation:true|Interpolate:false,HorseMount|MaxGallopSpeed:50|MaxRunSpeed:70|GallopMoveForce:50|RunMoveForce:70|JumpForceScale:1.25|RotateSpeed:3.9|RunStaminaCost:10|JumpStaminaCost:20|IsSettingsMaster:false|SettingsTag:HorseFemale|MoveForce:45|JumpForce:1600|MaxMoveSpeed:52|MaxCallTime:120|FollowDistance:10|InteractionRange:3,DestroyableObject|MaxHealth:300|Team:Human|DamageEffect:Blood1|DamageEffectScale:1|DeathEffect:Blood1|DeathEffectScale:2|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:HorseFemale;
+Scene,Interact/Wagon2a,1559,0,1,0,1,1,Wagon2a,11.13324,2.684978,-18.8126,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false,CannonWagon|MoveForce:55|JumpForceScale:1.3|MaxMoveSpeed:45|RotateSpeed:3|UnlimitedAmmo:true|MaxAmmo:10|Cooldown:3|ProjectileLiveTime:5|LimitVerticalRotation:true|VerticalRotation:45|LimitHorizontalRotation:false|HorizontalRotation:75|IsSettingsMaster:true|SettingsTag:|JumpForce:5,DestroyableObject|MaxHealth:300|Team:Human|DamageEffect:Boom1|DamageEffectScale:2|DeathEffect:Boom1|DeathEffectScale:3|InvincibleTime:3|IsSettingsMaster:true|SettingsTag:CannonWagon;
+Scene,Interact/Wagon2a,1605,0,1,0,1,1,Wagon2a,-10.20794,2.684978,-0.8741322,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false,CannonWagon|MoveForce:55|JumpForceScale:1.3|MaxMoveSpeed:45|RotateSpeed:3|UnlimitedAmmo:true|MaxAmmo:10|Cooldown:3|ProjectileLiveTime:5|LimitVerticalRotation:true|VerticalRotation:45|LimitHorizontalRotation:false|HorizontalRotation:75|IsSettingsMaster:true|SettingsTag:|JumpForce:5,DestroyableObject|MaxHealth:300|Team:Human|DamageEffect:Boom1|DamageEffectScale:2|DeathEffect:Boom1|DeathEffectScale:3|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:CannonWagon;
+Scene,Interact/Wagon2a,1603,0,1,0,1,1,Wagon2a,0.6125985,2.684978,-0.8741322,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false,CannonWagon|MoveForce:55|JumpForceScale:1.3|MaxMoveSpeed:45|RotateSpeed:3|UnlimitedAmmo:true|MaxAmmo:10|Cooldown:3|ProjectileLiveTime:5|LimitVerticalRotation:true|VerticalRotation:45|LimitHorizontalRotation:false|HorizontalRotation:75|IsSettingsMaster:true|SettingsTag:|JumpForce:5,DestroyableObject|MaxHealth:300|Team:Human|DamageEffect:Boom1|DamageEffectScale:2|DeathEffect:Boom1|DeathEffectScale:3|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:CannonWagon;
+Scene,Interact/Wagon2a,1604,0,1,0,1,1,Wagon2a,-10.20794,2.684978,-18.8126,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false,CannonWagon|MoveForce:55|JumpForceScale:1.3|MaxMoveSpeed:45|RotateSpeed:3|UnlimitedAmmo:true|MaxAmmo:10|Cooldown:3|ProjectileLiveTime:5|LimitVerticalRotation:true|VerticalRotation:45|LimitHorizontalRotation:false|HorizontalRotation:75|IsSettingsMaster:true|SettingsTag:|JumpForce:5,DestroyableObject|MaxHealth:300|Team:Human|DamageEffect:Boom1|DamageEffectScale:2|DeathEffect:Boom1|DeathEffectScale:3|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:CannonWagon;
+Scene,Interact/Wagon2a,1602,0,1,0,1,1,Wagon2a,0.6125985,2.684978,-18.8126,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false,CannonWagon|MoveForce:55|JumpForceScale:1.3|MaxMoveSpeed:45|RotateSpeed:3|UnlimitedAmmo:true|MaxAmmo:10|Cooldown:3|ProjectileLiveTime:5|LimitVerticalRotation:true|VerticalRotation:45|LimitHorizontalRotation:false|HorizontalRotation:75|IsSettingsMaster:true|SettingsTag:|JumpForce:5,DestroyableObject|MaxHealth:300|Team:Human|DamageEffect:Boom1|DamageEffectScale:2|DeathEffect:Boom1|DeathEffectScale:3|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:CannonWagon;
+Scene,Interact/Wagon2a,1601,0,1,0,1,1,Wagon2a,11.13324,2.684978,-0.8741322,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false,CannonWagon|MoveForce:55|JumpForceScale:1.3|MaxMoveSpeed:45|RotateSpeed:3|UnlimitedAmmo:true|MaxAmmo:10|Cooldown:3|ProjectileLiveTime:5|LimitVerticalRotation:true|VerticalRotation:45|LimitHorizontalRotation:false|HorizontalRotation:75|IsSettingsMaster:true|SettingsTag:|JumpForce:5,DestroyableObject|MaxHealth:300|Team:Human|DamageEffect:Boom1|DamageEffectScale:2|DeathEffect:Boom1|DeathEffectScale:3|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:CannonWagon;
+Scene,Interact/Wagon2c,1566,0,1,0,1,1,Wagon2c,-23.47384,2.684978,-18.8126,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Wagon|MoveForce:55|MaxMoveSpeed:45|RotateSpeed:3|JumpForceScale:1.3|CanSupply:true|InfiniteSupply:true|MaxSupplyTimes:40|IsSettingsMaster:true|SettingsTag:|JumpForce:5,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false,DestroyableObject|MaxHealth:500|Team:Human|DamageEffect:Boom1|DamageEffectScale:2|DeathEffect:Boom1|DeathEffectScale:3|InvincibleTime:3|IsSettingsMaster:true|SettingsTag:Wagon;
+Scene,Interact/Wagon2c,1606,0,1,0,1,1,Wagon2c,-23.47384,2.684978,-2.460097,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Wagon|MoveForce:55|MaxMoveSpeed:45|RotateSpeed:3|JumpForceScale:1.3|CanSupply:true|InfiniteSupply:true|MaxSupplyTimes:40|IsSettingsMaster:true|SettingsTag:|JumpForce:5,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false,DestroyableObject|MaxHealth:500|Team:Human|DamageEffect:Boom1|DamageEffectScale:2|DeathEffect:Boom1|DeathEffectScale:3|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:Wagon;
+Scene,Interact/Wagon2c,1608,0,1,0,1,1,Wagon2c,-34.88001,2.684978,-18.8126,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Wagon|MoveForce:55|MaxMoveSpeed:45|RotateSpeed:3|JumpForceScale:1.3|CanSupply:true|InfiniteSupply:true|MaxSupplyTimes:40|IsSettingsMaster:true|SettingsTag:|JumpForce:5,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false,DestroyableObject|MaxHealth:500|Team:Human|DamageEffect:Boom1|DamageEffectScale:2|DeathEffect:Boom1|DeathEffectScale:3|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:Wagon;
+Scene,Interact/Wagon2c,1607,0,1,0,1,1,Wagon2c,-34.88001,2.684978,-2.460097,0,0,0,1,1,1,Physical,All,Default,Default|255/255/255/255,Wagon|MoveForce:55|MaxMoveSpeed:45|RotateSpeed:3|JumpForceScale:1.3|CanSupply:true|InfiniteSupply:true|MaxSupplyTimes:40|IsSettingsMaster:true|SettingsTag:|JumpForce:5,Rigidbody|Mass:20|Gravity:0/-500/0|FreezeRotation:true|Interpolate:false,DestroyableObject|MaxHealth:500|Team:Human|DamageEffect:Boom1|DamageEffectScale:2|DeathEffect:Boom1|DeathEffectScale:3|InvincibleTime:3|IsSettingsMaster:false|SettingsTag:Wagon;
 Scene,Interact/Cannon3,1571,0,1,0,1,1,Cannon3,-115.7724,35.46057,161.9375,0,0,0,1.5,1.5,1.5,Physical,Entities,Default,Default|255/255/255/255,Cannon|UnlimitedAmmo:true|MaxAmmo:10|Cooldown:3|ProjectileLiveTime:5|LimitVerticalRotation:true|VerticalRotation:45|LimitHorizontalRotation:false|HorizontalRotation:75;
 Scene,Interact/Cannon3,1572,0,1,0,1,1,Cannon3,155.1561,35.46057,132.5061,0,0,0,1.5,1.5,1.5,Physical,Entities,Default,Default|255/255/255/255,Cannon|UnlimitedAmmo:true|MaxAmmo:10|Cooldown:3|ProjectileLiveTime:5|LimitVerticalRotation:true|VerticalRotation:45|LimitHorizontalRotation:false|HorizontalRotation:75;
 Scene,Decor/Scaffold4,1574,0,1,1,1,0,Scaffold4,103.9239,36.43981,16.85021,0,0,0,1,0.4,2,Physical,Entities,Default,Default|255/255/255/255,;
@@ -1287,7 +1284,7 @@ VerticalRotation = 45.0;
 LimitHorizontalRotation = false;
 HorizontalRotation = 75.0;
 
-_rotateSpeed = 360;
+_rotateSpeed = 270;
 _currentCameraPosition = 0;
 _cameraPositions = List();
 _ballSpeed = 300.0;
@@ -1520,7 +1517,7 @@ return angle;
 component CannonWagon
 {
 MoveForce = 20.0;
-JumpForce = 10.0;
+JumpForceScale = 1.3;
 MaxMoveSpeed = 50.0;
 RotateSpeed = 3.0;
 
@@ -1536,7 +1533,6 @@ _rightWheel = null;
 _cannon = null;
 _jumpCoolDown = 0;
 
-
 UnlimitedAmmo = false;
 MaxAmmo = 10;
 Cooldown = 2.0;
@@ -1546,7 +1542,10 @@ VerticalRotation = 45.0;
 LimitHorizontalRotation = false;
 HorizontalRotation = 75.0;
 
-_rotateSpeed = 360;
+IsSettingsMaster = false;
+SettingsTag = "";
+
+_rotateSpeed = 270;
 _currentCameraPosition = 0;
 _cameraPositions = List();
 _ballSpeed = 300.0;
@@ -1605,6 +1604,33 @@ self._maxHorizontalRotation -= 360.0;
 self._cameraPositions.Add(Vector3(0, 1.5, -15));
 self._cameraPositions.Add(Vector3(0, 1.5, -5));
 self._cameraPositions.Add(Vector3(0, 2, -20));
+}
+
+function OnGameStart()
+{
+if (!self.IsSettingsMaster) { return; }
+for (object in Map.FindMapObjectsByComponent("CannonWagon"))
+{
+comp = object.GetComponent("CannonWagon");
+if (comp.SettingsTag != self.SettingsTag) { continue; }
+comp.MoveForce = self.MoveForce;
+comp.JumpForceScale = comp.JumpForceScale;
+comp.MaxMoveSpeed = self.MaxMoveSpeed;
+comp.RotateSpeed = self.RotateSpeed;
+
+comp.UnlimitedAmmo = self.UnlimitedAmmo;
+comp.MaxAmmo = self.MaxAmmo;
+comp._ammoLeft = comp.MaxAmmo;
+comp.Cooldown = self.Cooldown;
+comp.ProjectileLiveTime = self.ProjectileLiveTime;
+comp.LimitVerticalRotation = self.LimitVerticalRotation;
+comp.VerticalRotation = self.VerticalRotation;
+comp.LimitHorizontalRotation = self.LimitHorizontalRotation;
+comp.HorizontalRotation = self.HorizontalRotation;
+
+rigidbody = object.GetComponent("Rigidbody");
+rigidbody.Gravity = self._rigidbody.Gravity;
+}
 }
 
 function SendNetworkStream()
@@ -1747,6 +1773,8 @@ self._collidingHuman = null;
 self._collidingDrive = false;
 self._collidingCannon = false;
 
+if (self._jumpCoolDown > 0) { self._jumpCoolDown -= Time.TickTime; }
+
 if (self._leftWheel != null && self._rightWheel != null)
 {
 L = Vector3.Distance(self._leftWheel.Position, self._rightWheel.Position);
@@ -1819,10 +1847,29 @@ self._targetBaseRotation = null;
 }
 }
 }
+
+if (self.NetworkView.Owner != Network.MyPlayer) { return; }
+
+if (self._inUse && self._human != null)
+{
+if (self._human.HasTargetDirection)
+{
+self.MapObject.Forward = Vector3.Lerp(self.MapObject.Forward, self._human.TargetDirection, self.RotateSpeed * Time.FrameTime);
+self._rigidbody.AddForce(self.MapObject.Forward * self.MoveForce); 
+
+}
+else
+{
+self.SlowToStop();
+}
+self.LimitSpeed();
+}
 }
 
 function OnFrame()
 {
+self.AnimateHorse();
+
 dismountVelocity = self._rigidbody.GetVelocity();
 dismountVelocity.Y += 12.0;
 if (self._rotationSyncCoolDdown > 0)
@@ -1837,43 +1884,11 @@ if (self.NetworkView.Owner == Network.MyPlayer)
 {
 if (self._inUse)
 {
-ySpeed = self._rigidbody.GetVelocity().Y;
-FrameFactor = Time.FrameTime/0.007;
-if (ySpeed <= 0.7 && self._jumpCoolDown > 0)
+if (Input.GetKeyDown("Human/HorseJump") && self._jumpCoolDown <= 0 
+&& Physics.LineCast(self.MapObject.Position, self.MapObject.Position - Vector3.Up * 5.0, "MapObjects") != null)
 {
-self._jumpCoolDown -= Time.FrameTime;
-if (self._jumpCoolDown < 0)
-{
-self._jumpCoolDown = 0;
-}
-}
-if (Input.GetKeyDown("Human/HorseJump") && self._jumpCoolDown <= 0 && Math.Abs(ySpeed) < 0.7)
-{
-upVec = self.MapObject.Up * self.JumpForce * 0.5 * (0-self._rigidbody.Gravity.Y);
-# Game.Print("Force 5");
-self._rigidbody.AddForce(upVec);
-self.LimitSpeed();
 self._jumpCoolDown = 1;
-}
-elif (self._human.HasTargetDirection)
-{
-self.MapObject.Forward = Vector3.Lerp(self.MapObject.Forward, self._human.TargetDirection, self.RotateSpeed * Time.FrameTime);
-# Game.Print("Frame Time " +  Time.FrameTime);
-self._rigidbody.AddForce(self.MapObject.Forward * self.MoveForce * (1/self.MapObject.Forward.Magnitude) * FrameFactor);
-self.LimitSpeed();
-# Game.Print("Speed " + self._rigidbody.Gravity + self.MapObject.Forward * self.MoveForce + self._rigidbody.Mass);
-}
-else
-{
-velocity = self._rigidbody.GetVelocity();
-if (velocity.Magnitude < 1)
-{
-self._rigidbody.SetVelocity(Vector3.Up * velocity.Y);
-}
-else
-{
-self._rigidbody.AddForce(-0.5 * velocity.Normalized * velocity.Magnitude * FrameFactor);
-}
+self._rigidbody.AddForce(self.MapObject.Up * self.JumpForceScale * self._rigidbody.Gravity.Y * -1);
 }
 
 if (self._rigidbody.GetVelocity().Magnitude > 1)
@@ -1888,6 +1903,7 @@ if (Input.GetKeyDown("Interaction/Interact") || Input.GetKeyDown("Human/HookLeft
 {
 self._human.Velocity = dismountVelocity;
 self._human.Unmount();
+self._human = null;
 Camera.SetManual(false);
 self.NetworkView.Transfer(Network.MasterClient);
 self._inUse = false;
@@ -1963,6 +1979,7 @@ if (Input.GetKeyDown("Interaction/Interact") || Input.GetKeyDown("Human/Jump"))
 self._inUseCannon = false;
 self._human.Velocity = dismountVelocity;
 self._human.Unmount();
+self._human = null;
 Camera.SetManual(false);
 self.NetworkView.SendMessage(self.NetworkView.Owner, "c");
 return;
@@ -1997,20 +2014,35 @@ self.NetworkView.SendMessage(self.NetworkView.Owner, "c" + Convert.ToString(Netw
 }
 }
 }
-self.UpdateHorse();
+}
+
+function SlowToStop()
+{
+velocity = self._rigidbody.GetVelocity();
+velocityY = velocity.Y;
+velocity.Y = 0;
+
+if (velocity.Magnitude < 1) { self._rigidbody.SetVelocity(Vector3.Up * velocityY); }
+else { self._rigidbody.AddForce(-0.5 * velocity + velocityY * Vector3.Up); }
 }
 
 function LimitSpeed()
 {
 velocity = self._rigidbody.GetVelocity();
-y = velocity.Y;
+velocityY = velocity.Y;
 velocity.Y = 0;
 velocity = velocity.Normalized * Math.Min(velocity.Magnitude, self.MaxMoveSpeed);
-velocity.Y = y;
+velocity.Y = velocityY;
 self._rigidbody.SetVelocity(velocity);
 }
 
-function UpdateHorse()
+function AnimateRider() 
+{
+if (self._rigidbody.GetVelocity().Magnitude > 1) { self._human.PlayAnimation("Armature|horse_run");}
+else { self._human.PlayAnimation("Armature|horse_idle"); }
+}
+
+function AnimateHorse()
 {
 if (self._rigidbody.GetVelocity().Magnitude > 1)
 {
@@ -2059,15 +2091,129 @@ return angle;
 }
 }
 
+component DestroyableObject
+{
+MaxHealth = 300;
+Team = "Human";
+DamageEffect = "";
+DamageEffectScale = 1.0;
+DeathEffect = "";
+DeathEffectScale = 1.0;
+InvincibleTime = 3.0;
+
+IsSettingsMaster = false;
+SettingsTag = "";
+
+_currentHealth = 0;
+_invincibleTimer = 0;
+
+function Init()
+{
+self.MapObject.AddBoxCollider("Region", "Hitboxes");
+self._currentHealth = self.MaxHealth;
+}
+
+function OnGameStart()
+{
+if (!self.IsSettingsMaster) { return; }
+for (object in Map.FindMapObjectsByComponent("DestroyableObject"))
+{
+comp = object.GetComponent("DestroyableObject");
+if (comp.SettingsTag != self.SettingsTag) { continue; }
+comp.MaxHealth = self.MaxHealth;
+comp._currentHealth = comp.MaxHealth;
+comp.Team = self.Team;
+comp.DamageEffect = self.DamageEffect;
+comp.DamageEffectScale = self.DamageEffectScale;
+comp.DeathEffect = self.DeathEffect;
+comp.DeathEffectScale = self.DeathEffectScale;
+comp.InvincibleTime = self.InvincibleTime;
+}
+}
+
+function GetMaxHealth() { return self.MaxHealth; }
+function GetHealth() { return self._currentHealth; }
+
+function SetHealth(amount) 
+{
+self._currentHealth = amount;
+self.NetworkView.SendMessageOthers("h" + Convert.ToString(self._currentHealth));
+
+if (self._currentHealth > 0 ) { self.MapObject.Active = true; }
+else { self.MapObject.Active = false; }
+}
+
+function OnNetworkMessage(sender, message)
+{
+if (String.StartsWith(message, "h"))
+{
+newHealth = Convert.ToInt(String.Substring(message, 1));
+if (newHealth < self._currentHealth) { self._invincibleTimer = self.InvincibleTime; }
+self._currentHealth = newHealth;
+
+if (self._currentHealth > 0 ) { self.MapObject.Active = true; }
+else { self.MapObject.Active = false; }
+}
+}
+
+function OnPlayerJoin(player)
+{
+if (Network.IsMasterClient) { self.NetworkView.SendMessage(player, "h" + Convert.ToString(self._currentHealth)); }
+}
+
+function OnPlayerSpawn(player, character)
+{
+if (Network.IsMasterClient) { self.NetworkView.SendMessage(player, "h" + Convert.ToString(self._currentHealth)); }
+}
+
+function OnGetHit(character, name, damage, type)
+{
+if (!Network.IsMasterClient || self._invincibleTimer > 0 || character.Type == self.Team) { return; }
+
+self._currentHealth -= damage;
+self._invincibleTimer = self.InvincibleTime;
+
+if (self._currentHealth <= 0 && self.DeathEffect != "")
+{
+Game.SpawnEffect(self.DeathEffect, self.MapObject.Position, Vector3.Zero, self.DeathEffectScale);
+}
+elif (self.DamageEffect != "")
+{
+Game.SpawnEffect(self.DamageEffect, self.MapObject.Position, Vector3.Zero, self.DamageEffectScale);
+}
+
+self.NetworkView.SendMessageOthers("h" + Convert.ToString(self._currentHealth));
+if (self._currentHealth > 0 ) { self.MapObject.Active = true; }
+else { self.MapObject.Active = false; }
+}
+
+function OnTick()
+{
+if (self._invincibleTimer > 0) { self._invincibleTimer -= Time.TickTime; }
+}
+}
+
 component HorseMount
 {
-MoveForce = 20.0;
-JumpForce = 5.0;
-MaxMoveSpeed = 50.0;
-RotateSpeed = 3.0;
-MaxCallTime = 120.0;
-FollowDistance = 30.0;
-InteractionRange = 3.0;
+MaxGallopSpeed = 45.0;
+MaxRunSpeed = 65.0;
+GallopMoveForce = 45.0;
+RunMoveForce = 65.0;
+JumpForceScale = 1.3;
+RotateSpeed = 3.8;
+JumpForceScaleTooltip = "Jump force is calculated based on gravity and scale provided";
+RunStaminaCost = 10.0;
+JumpStaminaCost = 25.0;
+CanHavePassenger = true;
+
+IsSettingsMaster = false;
+SettingsTag = "";
+
+_MaxCallTime = 120.0;
+_FollowDistance = 20.0;
+_InteractionRange = 3.0;
+_MaxStamina = 100.0;
+_StaminaRegenDelay = 1.0;
 
 # Synced Stream
 _inUse = false;
@@ -2088,6 +2234,9 @@ _isFollowing = false;
 _isPassenger = false;
 _callTimeRemaining = 0;
 _jumpCooldown = 0;
+_isRunning = false;
+_currentStamina = 0;
+_staminaRegenCooldown = 0;
 
 _isRequestingMount = false;
 _isRequestingCall = false;
@@ -2096,10 +2245,33 @@ _HorseProperty = "HorseProperty";
 
 function Init()
 {
-self.MapObject.AddSphereCollider("Region", "Characters", Vector3.Zero, self.InteractionRange);
+self.MapObject.AddSphereCollider("Region", "Characters", Vector3.Zero, self._InteractionRange);
 self._horse = self.MapObject.Transform;
 self._rigidbody = self.MapObject.GetComponent("Rigidbody");
 self._healthComponent = self.MapObject.GetComponent("DestroyableObject");
+self._currentStamina = self._MaxStamina;
+}
+
+function OnGameStart()
+{
+if (!self.IsSettingsMaster) { return; }
+for (object in Map.FindMapObjectsByComponent("HorseMount"))
+{
+comp = object.GetComponent("HorseMount");
+if (comp.SettingsTag != self.SettingsTag) { continue; }
+comp.MaxGallopSpeed = self.MaxGallopSpeed;
+comp.MaxRunSpeed = self.MaxRunSpeed;
+comp.GallopMoveForce = self.GallopMoveForce;
+comp.RunMoveForce = self.RunMoveForce;
+comp.JumpForceScale = self.JumpForceScale;
+comp.RunStaminaCost = self.RunStaminaCost;
+comp.JumpStaminaCost = self.JumpStaminaCost;
+comp.RotateSpeed = self.RotateSpeed;
+comp.CanHavePassenger = self.CanHavePassenger;
+
+rigidbody = object.GetComponent("Rigidbody");
+rigidbody.Gravity = self._rigidbody.Gravity;
+}
 }
 
 function OnPlayerSpawn(player, character)
@@ -2226,8 +2398,8 @@ project = Vector3.Project(other.Position - self.MapObject.Position, self.MapObje
 isCollidingRide = project.Normalized == self.MapObject.Forward;
 text = "";
 if (self._isCalled) { text += "Horse is following it's owner"; }
-elif (!self._inUse && isCollidingRide) { text += "Press " + Input.GetKeyName("Interaction/Interact") + " to ride"; }
-elif (!self._hasPassenger && !isCollidingRide) {text += "Press " + Input.GetKeyName("Interaction/Interact") + " to ride as passenger"; }
+elif (!self._inUse && (isCollidingRide || !self.CanHavePassenger)) { text += "Press " + Input.GetKeyName("Interaction/Interact") + " to ride"; }
+elif (!self._hasPassenger && (!isCollidingRide && self.CanHavePassenger)) {text += "Press " + Input.GetKeyName("Interaction/Interact") + " to ride as passenger"; }
 else { return; }
 
 if (self._healthComponent != null) { text += " (" + Convert.ToString(self._healthComponent.GetHealth()) + "HP)"; }
@@ -2244,8 +2416,8 @@ text += "Follow [" + Input.GetKeyName("Interaction/Interact2") + "]  Unclaim [" 
 }
 
 UI.SetLabelForTime("MiddleCenter", text, 0.1);
-if (isCollidingRide) { self._collidingRide = other; }
-else { self._collidingPassenger = other; }
+if (isCollidingRide || !self.CanHavePassenger) { self._collidingRide = other; }
+elif (self.CanHavePassenger) { self._collidingPassenger = other; }
 if (RoomData.GetProperty(self._HorseProperty, null) == null) { RoomData.SetProperty(self._HorseProperty, self.MapObject.ID); }
 }
 }
@@ -2261,6 +2433,13 @@ if (RoomData.GetProperty(self._HorseProperty, null) != null && RoomData.GetPrope
 
 if (self._callTimeRemaining > 0) { self._callTimeRemaining -= Time.TickTime; }
 if (self._jumpCooldown > 0) { self._jumpCooldown -= Time.TickTime; }
+if (self._staminaRegenCooldown > 0) { self._staminaRegenCooldown -= Time.TickTime; }
+
+if (self._staminaRegenCooldown <= 0 && !self._isRunning && self._currentStamina < self._MaxStamina) 
+{ 
+self._currentStamina += 20.0 * Time.TickTime; 
+if (self._currentStamina > self._MaxStamina) { self._currentStamina = self._MaxStamina; }
+}
 
 if (myCharacter != null && myCharacter.Type == "Human" && myCharacter.IsMounted && myCharacter.MountedTransform == self._horse 
 && (self._human == null || !self.MapObject.Active))
@@ -2275,13 +2454,24 @@ if (self._inUse && !self._isPassenger && self._human != null)
 if (self._human.HasTargetDirection)
 {
 self.MapObject.Forward = Vector3.Lerp(self.MapObject.Forward, self._human.TargetDirection, self.RotateSpeed * Time.FrameTime);
-self._rigidbody.AddForce(self.MapObject.Forward * self.MoveForce);
+if (self._isRunning)
+{
+self._currentStamina -= self.RunStaminaCost * Time.TickTime;
+self._rigidbody.AddForce(self.MapObject.Forward * self.RunMoveForce);
+UI.SetLabelForTime("MiddleCenter", "Running", 0.2);
+self._staminaRegenCooldown = self._StaminaRegenDelay;
+}
+else
+{
+self._rigidbody.AddForce(self.MapObject.Forward * self.GallopMoveForce); 
+}
 }
 else
 {
 self.SlowToStop();
 }
 self.LimitSpeed();
+UI.SetLabelForTime("MiddleCenter", "Stamina: " + String.FormatFloat(Math.Max(0, self._currentStamina / self._MaxStamina * 100.0), 0) + "%" , 0.1);
 }
 elif (myCharacter != null && myCharacter.Type == "Human" && self._isCalled)
 {
@@ -2289,7 +2479,7 @@ myPosition = myCharacter.Position;
 myPosition.Y = self.MapObject.Position.Y; # Ignore height in distance check
 distanceToOwner = Vector3.Distance(self.MapObject.Position, myPosition);
 
-if (self._isFollowing && distanceToOwner < self.FollowDistance) 
+if (self._isFollowing && distanceToOwner < self._FollowDistance) 
 {
 velocity = self._rigidbody.GetVelocity();
 velocityY = velocity.Y;
@@ -2326,7 +2516,7 @@ directionToPlayer = (myCharacter.Position - self.MapObject.Position).Normalized;
 directionToPlayer.Y = 0;
 
 self.MapObject.Forward = directionToPlayer;
-self._rigidbody.AddForce(directionToPlayer * self.MoveForce * 1.5);
+self._rigidbody.AddForce(directionToPlayer * self.GallopMoveForce * 1.5);
 self.LimitSpeed();
 }
 
@@ -2353,20 +2543,26 @@ function OnFrame()
 if (self._human != null) { self.AnimateRider(); }
 self.AnimateHorse();
 
+self._isRunning = Input.GetKeyHold("Human/HorseWalk") && self._currentStamina > 0;
+
 if (self._inUse && !self._isPassenger && self._human != null && self.NetworkView.Owner == Network.MyPlayer) 
 {
-if (Input.GetKeyDown("Human/HorseJump") && self._jumpCooldown <= 0 && Physics.LineCast(self.MapObject.Position, self.MapObject.Position - Vector3.Up * 5.0, "MapObjects") != null)
+if (Input.GetKeyDown("Human/HorseJump") && self._jumpCooldown <= 0 && self._currentStamina > self.JumpStaminaCost 
+&& Physics.LineCast(self.MapObject.Position, self.MapObject.Position - Vector3.Up * 5.0, "MapObjects") != null)
 {
 self._jumpCooldown = 1;
-self._rigidbody.AddForce(self.MapObject.Up * self.JumpForce);
+self._currentStamina -= self.JumpStaminaCost;
+self._staminaRegenCooldown = self._StaminaRegenDelay;
+self._rigidbody.AddForce(self.MapObject.Up * self.JumpForceScale * self._rigidbody.Gravity.Y * -1);
 }
-elif ((Input.GetKeyDown("Interaction/Interact") || Input.GetKeyDown("Human/Jump") 
+elif ((Input.GetKeyDown("Interaction/Interact") || Input.GetKeyDown("Human/HorseMount") 
 || Input.GetKeyDown("Human/HookLeft") || Input.GetKeyDown("Human/HookRight"))) 
 {
 self.DismountHorse(true);
 }
 }
-elif (self._hasPassenger && self._isPassenger && self._human != null && Input.GetKeyDown("Interaction/Interact"))
+elif (self._hasPassenger && self._isPassenger && self._human != null 
+&& (Input.GetKeyDown("Interaction/Interact") || Input.GetKeyDown("Human/HorseMount")))
 {
 self.SetHasPassenger(false);
 self._human.Unmount();
@@ -2389,8 +2585,8 @@ elif (!self._hasPassenger && !self._isCalled && self._collidingPassenger != null
 {
 self.SetHasPassenger(true);
 self._human = self._collidingPassenger;
-self._human.MountTransform(self._horse, Vector3(0, 1.95, -0.4), Vector3.Zero);
 self._human.ClearHooks();
+self._human.MountTransform(self._horse, Vector3(0, 1.95, -0.4), Vector3.Zero);
 self._isPassenger = true;
 }
 elif ((!self._isCalled || self._isFollowing) && self._human == null && self._ownerId == Network.MyPlayer.ID 
@@ -2407,7 +2603,7 @@ self._isRequestingCall = true;
 self.NetworkView.SendMessage(self.NetworkView.Owner, "request");
 }
 }
-elif (!self._inUse && !self._isCalled && self._collidingRide != null 
+elif (!self._inUse && !self._isCalled && (self._collidingRide != null || self._collidingPassenger != null) 
 && self._ownerId == Network.MyPlayer.ID && Input.GetKeyDown("Interaction/Interact3"))
 {
 self.SetOwnerId(-1);
@@ -2444,8 +2640,8 @@ self._human = human;
 self._inUse = true;
 self._isCalled = false;
 
-human.MountTransform(self._horse, Vector3(0, 1.95, 0.1), Vector3.Zero);
-human.ClearHooks();
+self._human.ClearHooks();
+self._human.MountTransform(self._horse, Vector3(0, 1.95, 0.1), Vector3.Zero);
 
 if (self._ownerId == -1)
 {
@@ -2455,13 +2651,13 @@ self.SetOwnerId(self._human.Player.ID);
 
 function Whistle()
 {
-self._callTimeRemaining = self.MaxCallTime;
+self._callTimeRemaining = self._MaxCallTime;
 self._isCalled = true;
 self._inUse = false;
 
 Network.MyPlayer.Character.Emote("Eat");
 
-if (!self._isFollowing && self._collidingRide != null)
+if (!self._isFollowing && (self._collidingRide != null || self._collidingPassenger != null))
 {
 self._isFollowing = true;
 UI.SetLabelForTime("MiddleCenter", "*Whistle!*" + String.Newline + "*You order your horse to follow..", 1.5);
@@ -2502,7 +2698,16 @@ function LimitSpeed()
 velocity = self._rigidbody.GetVelocity();
 velocityY = velocity.Y;
 velocity.Y = 0;
-velocity = velocity.Normalized * Math.Min(velocity.Magnitude, self.MaxMoveSpeed);
+
+if (self._isRunning && velocity.Magnitude > self.MaxRunSpeed)
+{
+velocity = Vector3.Lerp(velocity, velocity.Normalized * self.MaxRunSpeed, 0.1);
+}
+elif(!self._isRunning && velocity.Magnitude > self.MaxGallopSpeed)
+{
+velocity = Vector3.Lerp(velocity, velocity.Normalized * self.MaxGallopSpeed, 0.1);
+}
+#velocity = velocity.Normalized * Math.Min(velocity.Magnitude, self.MaxMoveSpeed);
 velocity.Y = velocityY;
 self._rigidbody.SetVelocity(velocity);
 }
@@ -2526,6 +2731,358 @@ function SetHasPassenger(value)
 {
 self._hasPassenger = value;
 self.NetworkView.SendMessageOthers("p" + Convert.ToString(self._hasPassenger));
+}
+}
+
+component Wagon
+{
+MoveForce = 17.0;
+MaxMoveSpeed = 50.0;
+RotateSpeed = 2.5;
+JumpForceScale = 1.3;
+CanSupply = true;
+InfiniteSupply = false;
+MaxSupplyTimes = 40;
+
+IsSettingsMaster = false;
+SettingsTag = "";
+
+_inUse = false;
+_riding = false;
+_horse = null;
+_human = null;
+_collidingHuman = null;
+_collidingDrive = false;
+_collidingRide = false;
+_collidingGas = false;
+_rigidbody = null;
+_healthComponent = null;
+_leftWheel = null;
+_rightWheel = null;
+_leftSitTransform = null;
+_rightSitTransform = null;
+_supplyTimesLeft = 0;
+_jumpCoolDown = 0;
+
+function Init()
+{
+self._horse = self.MapObject.GetTransform("Horse");
+self.MapObject.AddSphereCollider("Region", "Characters", Vector3.Zero, 5.5);
+self._rigidbody = self.MapObject.GetComponent("Rigidbody");
+self._healthComponent = self.MapObject.GetComponent("DestroyableObject");
+self._leftWheel = self.MapObject.GetTransform("Carriage/Wheels/LeftWheelPivot");
+self._rightWheel = self.MapObject.GetTransform("Carriage/Wheels/RightWheelPivot");
+self._leftSitTransform = self.MapObject.GetTransform("SitRegionBottomLeft");
+self._rightSitTransform = self.MapObject.GetTransform("SitRegionBottomRight");
+self._supplyTimesLeft = self.MaxSupplyTimes;
+}
+
+function OnGameStart()
+{
+if (!self.IsSettingsMaster) { return; }
+for (object in Map.FindMapObjectsByComponent("Wagon"))
+{
+comp = object.GetComponent("Wagon");
+if (comp.SettingsTag != self.SettingsTag) { continue; }
+comp.MoveForce = self.MoveForce;
+comp.MaxMoveSpeed = self.MaxMoveSpeed;
+comp.RotateSpeed = self.RotateSpeed;
+comp.JumpForceScale = self.JumpForceScale;
+comp.CanSupply = self.CanSupply;
+comp.InfiniteSupply = self.InfiniteSupply;
+comp.MaxSupplyTimes = self.MaxSupplyTimes;
+comp._supplyTimesLeft = comp.MaxSupplyTimes;
+
+rigidbody = object.GetComponent("Rigidbody");
+rigidbody.Gravity = self._rigidbody.Gravity;
+}
+}
+
+function OnNetworkMessage(sender, message)
+{
+if (Network.IsMasterClient && self.NetworkView.Owner == Network.MyPlayer && !self._inUse && message == "request")
+{
+self.NetworkView.Transfer(sender);
+}
+elif (String.StartsWith(message, "s"))
+{
+self._supplyTimesLeft = Convert.ToInt(String.Substring(message, 1));
+}
+}
+
+function OnPlayerSpawn(player, character)
+{
+if (self.NetworkView.Owner == Network.MyPlayer)
+{
+self.NetworkView.SendMessage(player, "s" + Convert.ToString(self._supplyTimesLeft));
+}
+}
+
+function UseSupply()
+{
+self._supplyTimesLeft = self._supplyTimesLeft - 1;
+self.NetworkView.SendMessageOthers("s" + Convert.ToString(self._supplyTimesLeft));
+}
+
+function SetSupplyCount(amount)
+{
+self._supplyTimesLeft = amount;
+self.NetworkView.SendMessageOthers("s" + Convert.ToString(self._supplyTimesLeft));
+}
+
+function OnNetworkTransfer(oldOwner, newOwner) 
+{
+if (newOwner == Network.MasterClient && Network.IsMasterClient)
+{
+self._inUse = false;
+}
+elif (newOwner == Network.MyPlayer)
+{
+self._inUse = true;
+human = Network.MyPlayer.Character;
+if (human != null && human.Type == "Human")
+{
+human.MountTransform(self._horse, Vector3(0, 1.95, 0), Vector3.Zero);
+human.ClearHooks();
+self._human = human;
+}
+}
+}
+
+function OnCollisionStay(other)
+{
+if (other.Type == "Human" && other.IsMine)
+{
+diff = (other.Position - self.MapObject.Position);
+project = Vector3.Project(diff, self.MapObject.Forward);
+if (project.Magnitude > 3 * self.MapObject.Scale.Z && project.Normalized == self.MapObject.Forward)
+{
+if (!self._inUse && !self._riding && !other.IsMounted)
+{
+text = "Press " + Input.GetKeyName("Interaction/Interact") + " to drive wagon.";
+if (self._healthComponent != null) { text += " (" + Convert.ToString(self._healthComponent.GetHealth()) + "HP)"; }
+UI.SetLabelForTime("MiddleCenter", text, 0.1);
+self._collidingHuman = other;
+self._collidingDrive = true;
+}
+}
+elif (project.Magnitude > 4 * self.MapObject.Scale.Z && project.Normalized == self.MapObject.Forward * -1.0)
+{
+if (!self._inUse && !self._riding && self.CanSupply && !other.IsMounted)
+{
+if (self.InfiniteSupply)
+{
+UI.SetLabelForTime("MiddleCenter", "Press " + Input.GetKeyName("Interaction/Interact") + " to refill.", 0.1);
+self._collidingHuman = other;
+self._collidingGas = true;
+}
+else
+{
+left = Math.Max(self._supplyTimesLeft, 0);
+UI.SetLabelForTime("MiddleCenter", "Press " + Input.GetKeyName("Interaction/Interact") + " to refill (" + Convert.ToString(self._supplyTimesLeft) + " left.)", 0.1);
+if (left > 0)
+{
+self._collidingHuman = other;
+self._collidingGas = true;
+}
+}
+}
+}
+else
+{
+if (!self._riding && !other.IsMounted)
+{
+text = "Press " + Input.GetKeyName("Interaction/Interact") + " to ride wagon.";
+if (self._healthComponent != null) { text += " (" + Convert.ToString(self._healthComponent.GetHealth()) + "HP)"; }
+UI.SetLabelForTime("MiddleCenter", text, 0.1);
+self._collidingHuman = other;
+self._collidingRide = true;
+}
+}
+}
+}
+
+function OnTick()
+{
+self._collidingHuman = null;
+self._collidingDrive = false;
+self._collidingRide = false;
+self._collidingGas = false;
+
+if (self._jumpCoolDown > 0) { self._jumpCoolDown -= Time.TickTime; }
+
+if (self._leftWheel != null && self._rightWheel != null)
+{
+L = Vector3.Distance(self._leftWheel.Position, self._rightWheel.Position);
+r = self._leftWheel.Scale.Y / 2;
+
+localVelocity = self.MapObject.Transform.InverseTransformDirection(self._rigidbody.GetVelocity());
+angularVelocity = self._rigidbody.GetAngularVelocity();
+
+v_x = localVelocity.Z;
+omega = angularVelocity.Y;
+
+leftWheelRotationSpeed = (v_x - (L / 2) * omega) / r;
+rightWheelRotationSpeed = (v_x + (L / 2) * omega) / r;
+
+leftWheelRotation = leftWheelRotationSpeed * Time.TickTime * Math.Rad2DegConstant * 0.3; # Character moves too fast for irl physics
+rightWheelRotation = rightWheelRotationSpeed * Time.TickTime * Math.Rad2DegConstant * 0.3;
+
+self._leftWheel.Rotate(Vector3(leftWheelRotation, 0, 0));
+self._rightWheel.Rotate(Vector3(rightWheelRotation, 0, 0));
+}
+
+if (self.NetworkView.Owner != Network.MyPlayer) { return; }
+
+if (self._inUse && self._human != null)
+{
+if (self._human.HasTargetDirection)
+{
+self.MapObject.Forward = Vector3.Lerp(self.MapObject.Forward, self._human.TargetDirection, self.RotateSpeed * Time.FrameTime);
+self._rigidbody.AddForce(self.MapObject.Forward * self.MoveForce); 
+
+}
+else
+{
+self.SlowToStop();
+}
+self.LimitSpeed();
+}
+}
+
+function OnFrame()
+{   
+if (self._human != null) { self.AnimateRider(); }
+self.AnimateHorse();
+
+dismountVelocity = self._rigidbody.GetVelocity();
+dismountVelocity.Y += 12.0;
+
+if (self.NetworkView.Owner == Network.MyPlayer)
+{
+if (self._inUse)
+{
+if (Input.GetKeyDown("Human/HorseJump") && self._jumpCoolDown <= 0 
+&& Physics.LineCast(self.MapObject.Position, self.MapObject.Position - Vector3.Up * 5.0, "MapObjects") != null)
+{
+self._jumpCoolDown = 1;
+self._rigidbody.AddForce(self.MapObject.Up * self.JumpForceScale * self._rigidbody.Gravity.Y * -1);
+}
+elif (Input.GetKeyDown("Interaction/Interact") || Input.GetKeyDown("Human/HookLeft") || Input.GetKeyDown("Human/HookRight") || Input.GetKeyDown("Human/Jump"))
+{
+self._human.Velocity = dismountVelocity;
+self._human.Unmount();
+self._human = null;
+self.NetworkView.Transfer(Network.MasterClient);
+self._inUse = false;
+return;
+}
+
+if (self.NetworkView.Owner.Character == null || self.NetworkView.Owner.Character.Type != "Human" || self.NetworkView.Owner.Character.MountedTransform != self._horse)
+{
+self.NetworkView.Transfer(Network.MasterClient);
+self._inUse = false;
+return;
+}
+}
+}
+if (self._riding)
+{
+if (self._human == null || self._human.MountedMapObject != self.MapObject)
+{
+self._riding = false;
+return;
+}
+if (Input.GetKeyDown("Interaction/Interact") || Input.GetKeyDown("Human/HookLeft") || Input.GetKeyDown("Human/HookRight") || Input.GetKeyDown("Human/Jump"))
+{
+self._human.Velocity = dismountVelocity;
+self._human.Unmount();
+self._human = null;
+self._riding = false;
+}
+else
+{
+self._human.PlayAnimation("Armature|horse_idle");
+}
+}
+if (self._collidingHuman != null)
+{
+if (Input.GetKeyDown("Interaction/Interact"))
+{
+if (self._collidingDrive && !self._collidingHuman.IsMounted && !self._inUse)
+{
+if (self.NetworkView.Owner == Network.MyPlayer) 
+{
+self._inUse = true;
+self._collidingHuman.MountTransform(self._horse, Vector3(0, 1.95, 0), Vector3.Zero);
+self._collidingHuman.ClearHooks();
+self._human = self._collidingHuman;
+}
+else
+{
+self.NetworkView.SendMessage(self.NetworkView.Owner, "request");
+}
+}
+elif (self._collidingGas && !self._inUse)
+{
+if (self._collidingHuman.Refill(true))
+{
+self.UseSupply();
+}
+}
+elif (self._collidingRide && !self._collidingHuman.IsMounted && !self._riding)
+{
+self._riding = true;
+self._human = self._collidingHuman;
+posA = self._leftSitTransform.LocalPosition; # Vector3(-1.0, 1.78, -3.5);
+posB = self._rightSitTransform.LocalPosition; # Vector3(1.0, 1.78, 1.0);
+self._human.MountMapObject(self.MapObject, Random.RandomVector3(posA, posB), Vector3(0, 0, 0));
+self._human.ClearHooks();
+}
+}
+}
+}
+
+function SlowToStop()
+{
+velocity = self._rigidbody.GetVelocity();
+velocityY = velocity.Y;
+velocity.Y = 0;
+
+if (velocity.Magnitude < 1) { self._rigidbody.SetVelocity(Vector3.Up * velocityY); }
+else { self._rigidbody.AddForce(-0.5 * velocity + velocityY * Vector3.Up); }
+}
+
+function LimitSpeed()
+{
+velocity = self._rigidbody.GetVelocity();
+velocityY = velocity.Y;
+velocity.Y = 0;
+velocity = velocity.Normalized * Math.Min(velocity.Magnitude, self.MaxMoveSpeed);
+velocity.Y = velocityY;
+self._rigidbody.SetVelocity(velocity);
+}
+
+function AnimateRider() 
+{
+if (self._rigidbody.GetVelocity().Magnitude > 1) { self._human.PlayAnimation("Armature|horse_run");}
+else { self._human.PlayAnimation("Armature|horse_idle"); }
+}
+
+function AnimateHorse()
+{
+if (self._rigidbody.GetVelocity().Magnitude > 1)
+{
+self._horse.PlayAnimation("horse_Run");
+self.MapObject.GetTransform("RunSound").PlaySound();
+self.MapObject.GetTransform("Dust").ToggleParticle(true);
+}
+else
+{
+self._horse.PlayAnimation("horse_idle0");
+self.MapObject.GetTransform("RunSound").StopSound();
+self.MapObject.GetTransform("Dust").ToggleParticle(false);
+}
 }
 }
 /// Weather
