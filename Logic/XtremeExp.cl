@@ -383,7 +383,7 @@ else { character.SetSpecial(self._selectedSpecial); }
 function OnCharacterDamaged(victim, killer, killerName, damage)
 {
 score = damage;
-if (killer != null && killer.Type == "Human" && killer.IsMounted)
+if (killer != null && killer.IsMainCharacter && killer.Type == "Human" && killer.IsMounted)
 {
 victim.Health += damage;
 victim.GetDamaged(killerName, self.CannonDamage);
@@ -1076,7 +1076,7 @@ for (player in Network.Players)
 {
 if (player.Character == null && player.GetCustomProperty(NamesEnum.Formation) == FormationsEnum.Right)
 {
-    Game.SpawnPlayerAt(player, false, self._rightReinforcementsSpawn);
+Game.SpawnPlayerAt(player, false, self._rightReinforcementsSpawn);
 }
 }
 Game.PrintAll("Right Wing got reinforced..");
@@ -1095,7 +1095,7 @@ for (player in Network.Players)
 {
 if (player.Character == null && player.GetCustomProperty(NamesEnum.Formation) == FormationsEnum.Left)
 {
-    Game.SpawnPlayerAt(player, false, self._leftReinforcementsSpawn);
+Game.SpawnPlayerAt(player, false, self._leftReinforcementsSpawn);
 }
 }
 Game.PrintAll("Left Wing got reinforced..");
